@@ -20,7 +20,7 @@ loot = [
 ]
 sword_prompts = [
     {"VoidCarver_Prompt": "A pitch black sword that has been passed down from millions of generations of Demons"},
-    {"Dawnspire": "A Blade that glows with the first light of a new empire"}
+    {"DawnSpire_Prompt": "A Blade that glows with the first light of a new empire"}
 ]
 
 player = {
@@ -36,8 +36,22 @@ player = {
 }
 
 basic_monsters = [
-    {"name": "Zombie", "hp": 25, "Attack": 3,"Shards_Dropped": random.randit(1,25)},
+    {"name": "Zombie", "hp": 25, "Attack": 3,"Shards_Dropped": random.randint(1,25)},
     {"name": "Orc", "hp": 35, "Attack": 7, "Shards_Dropped": random.randint(10,50)},
     {"name": ""}
 ]
-player["start_attack"] = loot["Wood_Sword"]["Damage"]
+
+#print(player["start_attack"])
+
+def equipped_weapon(new_weapon):
+    player["Sword"] = new_weapon
+
+    for item in loot:
+        if item["name"] == new_weapon:
+            player["Sword"] = item["Damage"]
+            break
+
+
+equipped_weapon("DawnSpire")
+print(player["start_attack"])
+
