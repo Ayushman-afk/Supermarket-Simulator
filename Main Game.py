@@ -1,7 +1,6 @@
 import random
 import time
 
-username = print("Enter your hero's name: ")
 
 potions = [
     {"name": "Health_Potion", "Gives_Health": random.randint(3, 5)},
@@ -24,34 +23,50 @@ sword_prompts = [
 ]
 
 player = {
-    "Name" : username,
-    "hp" : "30",
-    "start_attack" : "0",
-    "defense" : "7",
-    "Speed" : "4",
-    "Shards" : "10",
-    "Sheild": "50",
+    "hp" : 30,
+    "start_attack" : 0,
+    "defense" : 7,
+    "Speed" : 4,
+    "Shards" : 10,
+    "Sheild": 50,
     "Sword": "Wood_Sword",
     "Inventory" : ["Health Potion"]
 }
 
 basic_monsters = [
     {"name": "Zombie", "hp": 25, "Attack": 3,"Shards_Dropped": random.randint(1,25)},
-    {"name": "Orc", "hp": 35, "Attack": 7, "Shards_Dropped": random.randint(10,50)},
-    {"name": ""}
+    {"name": "Goblin", "hp": 35, "Attack": 7, "Shards_Dropped": random.randint(10,50)},
+    {"name": "Orc", "hp": 50, "Attack": 10, "Shards_Dropped": random.randint(30,75) },
 ]
 
-#print(player["start_attack"])
+Doombosses = {
+
+}
+
+
+
+username = print("Enter your hero's name: ")
+
+print("Welcome to the Mystical Jungle {}!".format(username))
 
 def equipped_weapon(new_weapon):
     player["Sword"] = new_weapon
-
     for item in loot:
         if item["name"] == new_weapon:
             player["Sword"] = item["Damage"]
+            print("Successfully Equipped {}".format(new_weapon))
             break
 
+#print("New Item Found!")
 
-equipped_weapon("DawnSpire")
-print(player["start_attack"])
+#user_equip = print("Do you wish to equip it? (y/n): ")
+
+#if user_equip == "y" or "Y":
+    equipped_weapon(new_weapon=random.choice(loot))
+#else:
+    print("Ok, Moving on.")
+
+
+
+
 
