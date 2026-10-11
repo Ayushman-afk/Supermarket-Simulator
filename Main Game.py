@@ -39,9 +39,13 @@ basic_monsters = [
     {"name": "Orc", "hp": 50, "Attack": 10, "Shards_Dropped": random.randint(30,75) },
 ]
 
-Doombosses = {
+mainbosses = [
+    {"name": "Shadow_King", "hp": 200, "Attack": 25},
+    {"name": "Eternal Boss of Doom", "hp": 500, "Attack": 50},
+    {"name": "Divine Commander", "hp": 1000, "Attack": 75}
+    
+]
 
-}
 
 
 
@@ -73,7 +77,18 @@ def equipped_weapon(new_weapon):
 
 loot_chance = random.randint(1,100)
 
-if 1 <= loot_chance <= 10:
+if 1 <= loot_chance <= 5:
+    weapon_chance = random.randint(1, 2)
+    if weapon_chance == 1:
+        dropped_weapon = "DawnSpire"
+    else:
+        dropped_weapon = "VoidCarver"
+        print("Better Luck Next Time!, Boss dropped Nothing")
+    player["Inventory"].append(dropped_weapon)
+    print("New Weapon Discovered")
+    print("{}, Added to Inventory".format(dropped_weapon))
+
+
 
 
 
