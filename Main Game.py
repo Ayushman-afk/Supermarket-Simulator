@@ -10,12 +10,12 @@ potions = [
 
 loot = [
     {"name": "Loot_Potion", "Gives_Shards": random.randint(10, 25)},
-    {"name": "Wood_Sword", "Damage": "3" }, # probability number = 3 (1 in 10)
-    {"name": "Stone_Sword", "Damage": "7" }, # probability number = 8 (1 in 20)
-    {"name": "Iron_Sword", "Damage": "11" }, # probability number = 17 (1 in 35)
-    {"name": "Diamond_Sword", "Damage": "17" }, # probability number = 28 (1 in 50)
-    {"name": "VoidCarver", "Damage": "25" },# probability number = 35 ( 1 in 250)
-    {"name": "DawnSpire", "Damage": "50" }, # probability number = 55 (1 in 500)
+    {"name": "Wood_Sword", "Damage": 3 }, # probability number = 3 (1 in 10)
+    {"name": "Stone_Sword", "Damage": 7 }, # probability number = 8 (1 in 20)
+    {"name": "Iron_Sword", "Damage": 11 }, # probability number = 17 (1 in 35)
+    {"name": "Diamond_Sword", "Damage": 17 }, # probability number = 28 (1 in 50)
+    {"name": "VoidCarver", "Damage": 25 },# probability number = 35 ( 1 in 250)
+    {"name": "DawnSpire", "Damage": 50 }, # probability number = 55 (1 in 500)
 ]
 sword_prompts = [
     {"VoidCarver_Prompt": "A pitch black sword that has been passed down from millions of generations of Demons"},
@@ -45,27 +45,24 @@ Doombosses = {
 
 
 
-username = print("Enter your hero's name: ")
+username = input("Enter your hero's name: ")
 
 print("Welcome to the Mystical Jungle {}!".format(username))
 
 def equipped_weapon(new_weapon):
-    player["Sword"] = new_weapon
     for item in loot:
         if item["name"] == new_weapon:
-            player["Sword"] = item["Damage"]
+            player["Sword"] = item["name"]
             print("Successfully Equipped {}".format(new_weapon))
+        else:
+            print("Weapon Not Discovered!")
             break
 
-#print("New Item Found!")
 
-#user_equip = print("Do you wish to equip it? (y/n): ")
+print(player["Sword"])
 
-#if user_equip == "y" or "Y":
-    equipped_weapon(new_weapon=random.choice(loot))
-#else:
-    print("Ok, Moving on.")
-
+equipped_weapon("Dragon_Sword")
+print(player["Sword"])
 
 
 
