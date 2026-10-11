@@ -52,11 +52,18 @@ print("Welcome to the Mystical Jungle {}!".format(username))
 def equipped_weapon(new_weapon):
     for item in loot:
         if item["name"] == new_weapon:
-            player["Sword"] = item["name"]
-            print("Successfully Equipped {}".format(new_weapon))
-        else:
-            print("Weapon Not Discovered!")
-            break
+            if item["name"] in player["Inventory"]:
+                if item["name"] == player["Sword"]:
+                    print("You have already equipped {}".format(item["name"]))
+                else:
+                    player["Sword"] = item["name"]
+                    print("Successfully Equipped {}".format(new_weapon))
+            else:
+                print("You Dont Own the Weapon!")
+                break
+    else:
+        print("Weapon Not Discovered!")
+
 
 
 print(player["Sword"])
