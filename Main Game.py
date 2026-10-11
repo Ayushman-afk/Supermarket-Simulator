@@ -30,7 +30,7 @@ player = {
     "Shards" : 10,
     "Sheild": 50,
     "Sword": "Wood_Sword",
-    "Inventory" : ["Health Potion"]
+    "Inventory" : ["Health Potion", "Stone_Sword"]
 }
 
 basic_monsters = [
@@ -60,16 +60,24 @@ def equipped_weapon(new_weapon):
                     print("Successfully Equipped {}".format(new_weapon))
             else:
                 print("You Dont Own the Weapon!")
-                break
+            break
     else:
-        print("Weapon Not Discovered!")
+        print("Weapon Doesn't Exist!")
 
 
 
-print(player["Sword"])
 
-equipped_weapon("Dragon_Sword")
-print(player["Sword"])
+#test for if equipped_weapon function works
+#equipped_weapon("Dragon_Sword")
+#print("Current Sword:", player["Sword"])
+
+loot_chance = random.randint(1,100)
+
+if 1 <= loot_chance <= 10:
+
+
+
+
 
 
 
