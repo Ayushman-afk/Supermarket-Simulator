@@ -1,99 +1,30 @@
-import random
 import time
+import random
 
+#- Pregame defined variables. (total - 115) (80 items of produce) (25 coupons defined.)
 
-potions = [
-    {"name": "Health_Potion", "Gives_Health": random.randint(3, 5)},
-    {"name": "Strength_Potion", "Gives_Strength": random.randint(5, 9)},
-    {"name": "Sheild_Potion", "Gives_Sheild": random.randint(10, 25)},
-]
+save_file_name = "SuperSimSave.txt"
+shift_num = 1
+bank_balance = 0.00
+upgrades = []
+total_customers_served = 0
+total_mistakes = 0
+best_shift_time = 999.9
+alltime_tips_earned = 0.00
 
-loot = [
-    {"name": "Loot_Potion", "Gives_Shards": random.randint(10, 25)},
-    {"name": "Wood_Sword", "Damage": 3 }, # probability number = 3 (1 in 10)
-    {"name": "Stone_Sword", "Damage": 7 }, # probability number = 8 (1 in 20)
-    {"name": "Iron_Sword", "Damage": 11 }, # probability number = 17 (1 in 35)
-    {"name": "Diamond_Sword", "Damage": 17 }, # probability number = 28 (1 in 50)
-    {"name": "VoidCarver", "Damage": 25 },# probability number = 35 ( 1 in 250)
-    {"name": "DawnSpire", "Damage": 50 }, # probability number = 55 (1 in 500)
-]
-sword_prompts = [
-    {"VoidCarver_Prompt": "A pitch black sword that has been passed down from millions of generations of Demons"},
-    {"DawnSpire_Prompt": "A Blade that glows with the first light of a new empire"}
-]
+# difficulty values/ Scaling
+# shift 1 = 3 customers per shift 4 minimum items in cart, 6 max in cart, 1 coupon per customer rand event chance = 0.10 (10%)
+# shift 2 = 4, 4, 7, 1, 0.15 (15%)
+#shift 3 = 4, 5, 8, 2, 0.20 (20%)
+#shift 4 = 5, 6, 9, 2, 0.25 (25%)
+#shift 5+ = 6, 7, 11, 3, 0.30 (30%)
 
-player = {
-    "hp" : 30,
-    "start_attack" : 0,
-    "defense" : 7,
-    "Speed" : 4,
-    "Shards" : 10,
-    "Sheild": 50,
-    "Sword": "Wood_Sword",
-    "Inventory" : ["Health Potion", "Stone_Sword"]
-}
-
-basic_monsters = [
-    {"name": "Zombie", "hp": 25, "Attack": 3,"Shards_Dropped": random.randint(1,25)},
-    {"name": "Goblin", "hp": 35, "Attack": 7, "Shards_Dropped": random.randint(10,50)},
-    {"name": "Orc", "hp": 50, "Attack": 10, "Shards_Dropped": random.randint(30,75) },
-]
-
-mainbosses = [
-    {"name": "Shadow_King", "hp": 200, "Attack": 25},
-    {"name": "Eternal Boss of Doom", "hp": 500, "Attack": 50},
-    {"name": "Divine Commander", "hp": 1000, "Attack": 75}
-    
-]
-
-
-
-
-username = input("Enter your hero's name: ")
-
-print("Welcome to the Mystical Jungle {}!".format(username))
-
-def equipped_weapon(new_weapon):
-    for item in loot:
-        if item["name"] == new_weapon:
-            if item["name"] in player["Inventory"]:
-                if item["name"] == player["Sword"]:
-                    print("You have already equipped {}".format(item["name"]))
-                else:
-                    player["Sword"] = item["name"]
-                    print("Successfully Equipped {}".format(new_weapon))
-            else:
-                print("You Dont Own the Weapon!")
-            break
-    else:
-        print("Weapon Doesn't Exist!")
-
-
-
-
-#test for if equipped_weapon function works
-#equipped_weapon("Dragon_Sword")
-#print("Current Sword:", player["Sword"])
-
-loot_chance = random.randint(1,100)
-
-if 1 <= loot_chance <= 5:
-    weapon_chance = random.randint(1, 2)
-    if weapon_chance == 1:
-        dropped_weapon = "DawnSpire"
-    else:
-        dropped_weapon = "VoidCarver"
-        print("Better Luck Next Time!, Boss dropped Nothing")
-    player["Inventory"].append(dropped_weapon)
-    print("New Weapon Discovered")
-    print("{}, Added to Inventory".format(dropped_weapon))
-
-
-
-
-
-
-
-
-
-
+hazard_categories = ["chemical", "raw_meat"]
+fresh_categories = ["produce", "bakery"]
+cold_categories = ["frozen", "dairy"]
+standard_max_bag_weight = 15 #(lbs)
+upgraded_max_bag_weight = 22 #(lbs) only works when the upgrade is bought
+heavy_item_limit = 4.0 #(lbs) items above this crush items fragile = True
+max_bags_per_order = 6
+frozen_bonus = 1.5 #($1.50 tip per bag with 2+ frozen category item)
+upgraded_frozen_bonus = 3.0 #($3 tip bonus when insulated bag upgrade is bought
