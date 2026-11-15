@@ -229,15 +229,63 @@ store_items = {
 
     "water" : {"name": "Spring Water", "price": 4.19, "weight": 6.8, "category": "household", "code": "8233", "is_house": True, "fragile": False },
 
-
-
-
-
-
-
-
-
 }
+
+
+coupons = [
+    {"text": "Save $1.00 on Organic Milk (Expires Shift 5)", "item": "milk", "discount": 1.00, "min_qty": 1, "max_shift": 5},
+
+    {"text": "Save $0.75 on Honeycrisp Apples (Expires Shift 7)", "item": "apples", "discount": 0.75, "min_qty": 1, "max_shift": 7},
+
+    {"text": "Save $1.50 on Spring Water (Expires Shift 5)", "item": "water", "discount": 1.50, "min_qty": 1, "max_shift": 5},
+
+    {"text": "Save $3.50 On 2-ply Toilet Paper (Expires Shift 14)", "item": "toiletpaper", "discount": 3.50, "min_qty": 1, "max_shift": 14},
+
+    {"text": "Save $1.00 on Flower Floor Cleaner (Expires Shift 11)", "item": "floorcleaner", "discount": 1.00, "min_qty": 2, "max_shift": 11},
+
+    {"text": "Save $9.50 on Steak (Expires Shift 8)", "item": "steak", "discount": 9.50, "min_qty": 3, "max_shift": 8},
+
+    {"text": "Save $1.25 on Laundry Detergent (Expires Shift 0)","item": "laundrydetergent", "discount": 1.25, "min_qty": 1, "max_shift": 0},
+
+    {"text": "Save $1.00 on Chicken Breast (Expires Shift 9)", "item": "chicken", "discount": 1.00, "min_qty": 1, "max_shift": 9},
+
+    {"text": "Save $1.50 on Tiger Shrimp (Expires Shift 0)", "item": "shrimp", "discount": 1.5, "min_qty": 1, "max_shift": 0},
+
+    {"text": "Save $2.30 on Whole Wheat Flour (Expires Shift 1)", "item": "flour", "discount": 2.30, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $2.90 on Tortilla Chips (Expires Shift 10)", "item": "tortillachips", "discount": 2.90, "min_qty": 1, "max_shift": 10},
+
+    {"text": "Save $5.00 on Herby Marinara Sauce (Expires Shift 3)", "item": "marinara", "discount": 5.00, "min_qty": 1, "max_shift": 3},
+
+    {"text": "Save $3.40 on Lemon Lime Wipes (Expires Shift 2)", "item": "cleaningwipes", "discount": 3.40, "min_qty": 1, "max_shift": 2},
+
+    {"text": "Save $ 0.50 on Avocados (Expires Shift 1)", "item": "avocados", "discount": 0.50, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $1.50 on Mexican Style Black Beans (Expires Shift 16)", "item": "blackbeans", "discount": 1.50, "min_qty": 1, "max_shift": 16},
+
+    {"text": "Save $2.99 on Thick Cut Bacon (Expires Shift 12)", "item": "blackbeans", "discount": 2.99, "min_qty": 1, "max_shift": 12},
+
+    {"text": "Save $10.00 on Chocolate Chip Cookies (Expires Shift 9)", "item": "chocolatechipcookies", "discount": 10.00, "min_qty": 1, "max_shift": 9},
+
+    {"text": "Save $12.99 on Fresh Maine Lobster (Expires Shift 12)", "item": "lobster", "discount": 12.99, "min_qty": 1, "max_shift": 12},
+
+    {"text": "Save $2.50 on Bleach (Expires Shift 1)","item": "bleach","discount":2.50, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $0.75 on Chocolate Protein Shake (Expires Shift 4)", "item": "proteinshake", "discount": 0.75, "min_qty": 1, "max_shift": 4},
+
+    {"text": "Save $2.59 on Tomato Soup (6ct) (Expires Shift 1)", "item": "soup", "discount": 2.59, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $2.00 on Garlic (Expires Shift 5)", "item": "garlic", "discount": 2.00, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $2.50 on 2 Tubs of Greek Yogurt (Expires Shift 6)", "item": "greekyogurt", "discount": 2.50, "min_qty": 1, "max_shift": 6},
+
+    {"text": "Save $12.00 on 2 Cuts on Ribeye Steak (Expires Shift 9)", "item": "steak", "discount": 12.00, "min_qty": 1, "max_shift": 9},
+
+    {"text": "Save $1.50 on Organic Almond Milk (Expires Shift 4)", "item": "almondmilk", "discount": 1.50, "min_qty": 1, "max_shift": 1},
+
+    {"text": "Save $3.40 on Chocolate Chip Muffins (10ct)", "item": "muffins", "discount": 3.40, "min_qty": 1, "max_shift": 10},
+
+]
 
 
 
