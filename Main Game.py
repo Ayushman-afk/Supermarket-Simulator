@@ -288,4 +288,62 @@ coupons = [
 ]
 
 
+customers = [
+    {
+        "name": "Tim",
+        "greeting": "Hi, How are you doing?. Please Keep my meat separate",
+        "happy_outro": "Everything looks in order.",
+        "angry_outro": "Oh No, Im Going to have to re-bag this",
+        "preferred_items": ["chicken","rice","blackbeans","oliveoil","eggs","flour"],
+        "tipmult": 1.2,
+    },
+    {
+        "name": "Bill",
+        "greeting": "Hi, how are you doing Today?. Please put my Frozen Items with my produce",
+        "happy_outro": "Thank You. Keep The Change",
+        "angry_outro": "You Crushed My Avocados",
+        "preferred_items": ["avocados", "steak", "rice","coffee","flour"],
+        "tipmult": 1.1,
+    },
+    {
+        "name": "Connor",
+        "greeting": "Hi, Multiple Coupons Today, Be Ready!",
+        "happy_outro": "Thank You For Your Time. Keep The Change",
+        "angry_outro": "You Crushed My Tortilla Chips",
+        "preferred_items" : ["tortillachips", "avocados","blackbeans", "salsa","soup","bellpeppers"],
+        "tipmult": 0.95,
+    },
+    {
+        "name": "College Kid",
+        "greeting": "On 2 Hours of Sleep, Need Some Caffeine",
+        "happy_outro": "Yo, You Got Me Good With the Energy!",
+        "angry_outro": "Bro, Where is My Energy Drink?",
+        "preferred_items": ["energydrink", "peanutbutter","eggs", "whitebread", "chips"],
+        "tipmult": 2.1,
+    },
+    {
+        "name": "Weekend Baker",
+        "greeting": "Hey, Here to Bake, Please Don't Crush My Muffins",
+        "happy_outro": "You fit my Things Perfectly",
+        "angry_outro": "You Put Bleach on Top on my muffins",
+        "preferred_items": ["muffin", "coffee", "croissants", "flour", "butter", "whitebread"],
+        "tipmult": 1.4,
+    },
+    {
+        "name": "Deep Cleaner Cory",
+        "greeting": "Hey, Cleaning Heavily Today, Don't Put my cleaning supplies with my Produce",
+        "happy_outro": "Hey, You Separated my bags to accommodate my request Thank You.",
+        "angry_outro": "Why Did you put my bleach with my apples?",
+        "preferred_items": ["bleach", "cleaningwipes","disinfectant", "apples","banana"],
+        "tipmult": 3.2
+    },
+    {
+        "name": "",
+        "greeting": "",
+        "happy_outro": "",
+        "angry_outro": "",
+        "preferred_items": [],
+        "tipmult": 0.0,
+    },
 
+]
