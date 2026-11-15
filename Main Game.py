@@ -117,11 +117,34 @@ store_items = {
 
     "chocolatechipcookies" : {"name": "Chocolate Chip Cookies", "price": 14.59, "weight": 7.0, "category": "bakery", "code": "3021", "is_bakery": True, "fragile": False},
 
-    "cinnamonbuns" : {"name": "Cinnamon Buns", "price": 6.99, "price": 12.99, "weight": 4.6, "category": "bakery", "code": "3481", "is_bakery": True, "fragile": False},
+    "cinnamonbuns" : {"name": "Cinnamon Buns", "price": 6.99,"weight": 4.6, "category": "bakery", "code": "3481", "is_bakery": True, "fragile": False},
 
     #raw meat / seafood
 
-    ""
+    "chicken" : {"name": "Chicken Breast", "price": 9.79, "weight": 7.8, "category": "rawmeat", "code": "4499", "is_rawmeat": True, "fragile": False},
+
+    "steak" : {"name": "Ribeye Steak", "price": 47.99, "weight": 11.0, "category": "rawmeat", "code": "4567", "is_rawmeat": True, "fragile": False},
+
+    "shrimp" : {"name": "Tiger Shrimp", "price": 13.99, "weight": 7.8, "category": "rawmeat", "code": "4659", "is_rawmeat": True, "fragile": False},
+
+    "groundbeef": {"name": "(97-3) Lean Ground Beef", "price": 8.99, "weight": 3.4, "category": "rawmeat", "code": "4109", "is_rawmeat": True, "fragile": False},
+
+    "turkey": {"name": "Full Turkey Bird", "price": 52.99, "weight": 23, "category": "rawmeat", "code": "4416", "is_rawmeat": True, "fragile": False },
+
+    "salmon": {"name": "Fresh Alaskan Salmon", "price": 12.99, "weight": 5.6, "category": "rawmeat", "code": "4417", "is_rawmeat": True, "fragile": False },
+
+    "pork": {"name": "Pork Chops", "price": 9.99, "weight": 3.4, "category": "rawmeat", "code": "4198", "is_rawmeat": True, "fragile": False },
+
+    "bacon": {"name": "Thick Cut Bacon", "price": 7.99, "weight": 1.9, "category": "rawmeat", "code": "4561", "is_rawmeat": True, "fragile": False },
+
+    "lobster": {"name": "Fresh Maine Lobster", "price": 43.79, "weight": 3.4, "category": "rawmeat", "code": "4333", "is_rawmeat": True, "fragile": False },
+
+    "crab": {"name": "Crab Legs", "price": 27.99, "weight": 12.0, "category": "rawmeat", "code": "4999", "is_rawmeat": True, "fragile": False },
+
+    # frozen foods
+
+    
+
 
 
 
