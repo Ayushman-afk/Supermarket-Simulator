@@ -297,6 +297,7 @@ customers = [
         "preferred_items": ["chicken","rice","blackbeans","oliveoil","eggs","flour"],
         "tipmult": 1.2,
     },
+
     {
         "name": "Bill",
         "greeting": "Hi, how are you doing Today?. Please put my Frozen Items with my produce",
@@ -305,6 +306,7 @@ customers = [
         "preferred_items": ["avocados", "steak", "rice","coffee","flour"],
         "tipmult": 1.1,
     },
+
     {
         "name": "Connor",
         "greeting": "Hi, Multiple Coupons Today, Be Ready!",
@@ -313,6 +315,7 @@ customers = [
         "preferred_items" : ["tortillachips", "avocados","blackbeans", "salsa","soup","bellpeppers"],
         "tipmult": 0.95,
     },
+
     {
         "name": "College Kid",
         "greeting": "On 2 Hours of Sleep, Need Some Caffeine",
@@ -321,6 +324,7 @@ customers = [
         "preferred_items": ["energydrink", "peanutbutter","eggs", "whitebread", "chips"],
         "tipmult": 2.1,
     },
+
     {
         "name": "Weekend Baker",
         "greeting": "Hey, Here to Bake, Please Don't Crush My Muffins",
@@ -329,6 +333,7 @@ customers = [
         "preferred_items": ["muffin", "coffee", "croissants", "flour", "butter", "whitebread"],
         "tipmult": 1.4,
     },
+
     {
         "name": "Deep Cleaner Cory",
         "greeting": "Hey, Cleaning Heavily Today, Don't Put my cleaning supplies with my Produce",
@@ -337,6 +342,7 @@ customers = [
         "preferred_items": ["bleach", "cleaningwipes","disinfectant", "apples","banana"],
         "tipmult": 3.2
     },
+
     {
         "name": "Taco Host",
         "greeting": "Hey, Hosting 12 today for Tacos",
@@ -345,6 +351,7 @@ customers = [
         "preferred_items": ["blackbeans", "salsa", "rice", "chicken","flour","onions"],
         "tipmult": 2.1,
     },
+
     {
         "name": "Early Commuter",
         "greeting": "In a rush Today",
@@ -353,6 +360,7 @@ customers = [
         "preferred_items": ["coffee", "bagels","creamcheese"],
         "tipmult": 0.9,
     },
+
     {
         "name": "Bobby",
         "greeting": "Today is Rainy, Well Hows Your Day",
@@ -361,6 +369,7 @@ customers = [
         "preferred_items": ["steak", "bellpepper", "salsa", "soup", "chicken","rice","coffee","flour","onions"],
         "tipmult": 1.6,
     },
+
     {
         "name": "BBQ Master",
         "greeting": "Hey, Got Some Meat For me?",
@@ -369,6 +378,7 @@ customers = [
         "preferred_items": ["shrimp", "steak", "chicken","coffee"],
         "tipmult": 2.2,
     },
+
     {
         "name": "Fit BodyBuilder",
         "greeting": "Hey, Need some for my muscles",
@@ -377,79 +387,87 @@ customers = [
         "preferred_items": ["chicken", "steak", "shrimp", "bacon", "porkchops"],
         "tipmult": 3.9,
     },
+
     {
         "name": "Carlos",
         "greeting": "Hey, Hosting a bbq for 25",
         "happy_outro": "And that is 25 people happy because of you!",
         "angry_outro": "And that is 25 sad because of you!",
         "preferred_items": ["chicken", "steak", "porkchops", "shrimp", "flour", "onions", "bellpeppers", "whitebread", "burgerbuns", "chips"],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
-    },
-    {
-        "name": "",
-        "greeting": "",
-        "happy_outro": "",
-        "angry_outro": "",
-        "preferred_items": [],
-        "tipmult": 0.0,
+        "tipmult": 1.6,
     },
 
+    {
+        "name": "Fancy Dinner Date",
+        "greeting": "Hey, Give me your Most expensive Cuts of meat",
+        "happy_outro": "My Date will appreciate this!",
+        "angry_outro": "You Made me Lose my Only Date!",
+        "preferred_items": ["steak","bread", "chips","lobster", "energydrink"],
+        "tipmult": 0.7,
+    },
 
+    {
+        "name": "The Lunchbox Parent",
+        "greeting": "Hey, in a rush. My kids Bus Leaves in 20mins!",
+        "happy_outro": "You saved me, I didnt miss the bus",
+        "angry_outro": "You Made me miss my Kid's Bus",
+        "preferred_items": ["chicken", "flour", "tortillas", "torillachips"],
+        "tipmult": 3.7,
+    },
 
+    {
+        "name": "Freezer Man",
+        "greeting": "Yo, Need Freezer Meals for the week",
+        "happy_outro": "Thanks man. There goes another week without cooking!",
+        "angry_outro": "Bro. I said All freezer meals",
+        "preferred_items": ["icecream", "waffles", "burritos", "fries"],
+        "tipmult": 1.4,
+    },
+
+    {
+        "name": "Generous Tipper",
+        "greeting": "Hey, Hows Your Day Been?",
+        "happy_outro": "Have A Good one, See you later",
+        "angry_outro": "You messed Up My order",
+        "preferred_items": ["burgerbuns", "whitebread", "rice", "blackbeans", "tortillachips"],
+        "tipmult": 7.2,
+    },
+
+    {
+        "name": "Seafood Lover",
+        "greeting": "Hey, Are Your Fish Fishing Today?",
+        "happy_outro": "Yo, The fish are fishing!",
+        "angry_outro": "Bro. these fish aren't fishing",
+        "preferred_items": ["lobster", "shrimp", "crab", "butter", "garlic"],
+        "tipmult": 1.98,
+    },
+
+    {
+        "name": "Picky Pablo",
+        "greeting": "Have Any Chicken Nuggets?",
+        "happy_outro": "Yo, Your Chicken Nuggets Are fire",
+        "angry_outro": "Bro, These are Bad Your Nuggets are still chickening",
+        "preferred_items": ["chickennuggets", "rice", "chicken"],
+        "tipmult": 2.9,
+    },
+
+    {
+        "name": "Soup Maker",
+        "greeting": "Hey, What is in store today?",
+        "happy_outro": "Your soup is fire",
+        "angry_outro": "Your soup is cold and sad",
+        "preferred_items": ["soup", "marinara", "carrots", "onions"],
+        "tipmult": 1.4,
+    },
+
+    {
+        "name": "Rordan Gamsey",
+        "greeting": "What Are You",
+        "happy_outro": "You are not an Idiot Sandwich",
+        "angry_outro": "Nah, You are an Idiot Sandwich",
+        "preferred_items": ["steak", "whitebread", "burgerbuns"],
+        "tipmult": 0.9,
+    }
 ]
+
+
