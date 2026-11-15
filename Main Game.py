@@ -93,10 +93,35 @@ store_items = {
 
     "sourcream" : {"name": "Sour Cream Tub", "price": 4.7, "weight": 2.4, "category": "dairy", "code": "2322", "is_dairy": True, "fragile": False},
 
-    "orangejuice" : {"name": "Freshly Squeezed Organic Orange Juice", "price": 7.89, "weight": 5.6, "category": "refrigerated", "is_dairy": True, "fragile": False},
+    "orangejuice" : {"name": "Freshly Squeezed Organic Orange Juice", "price": 7.89, "weight": 5.6, "category": "refrigerated", "code": "2551", "is_dairy": True, "fragile": False},
 
-    "hummus" : {"name": "Organic Sourced Hummus", "price": 8.99, "weight": 5.9, "category" : "refrigerated", "is_dairy": True, "fragile": False},
+    "hummus" : {"name": "Organic Sourced Hummus", "price": 8.99, "weight": 5.9, "category" : "refrigerated","code": "2443", "is_dairy": True, "fragile": False},
 
+    #bakery items
+
+    "whitebread" : {"name": "Wonderful White Bread (24ct)", "price": 3.45, "weight": 1.1, "category": "bakery","code": "3423", "is_bakery": True, "fragile": True},
+
+    "croissants" : {"name": "Croissants (6ct)", "price": 4.35, "weight": 0.8, "category": "bakery", "code": "3373", "is_bakery": True, "fragile": True},
+
+    "burgerbuns" : {"name": "Hamburger Buns (10ct)", "price": 5.69, "weight": 0.9, "category": "bakery", "code": "3987", "is_bakery": True, "fragile": True},
+
+    "muffins" : {"name": "Chocolate Chip Muffins (10ct)", "price": 11.99, "weight": 3.6, "category": "bakery", "code": "3221", "is_bakery": True, "fragile": False},
+
+    "tortillas" : {"name": "Flour Tortillas (12ct)", "price": 3.45, "weight": 2.3, "category": "bakery", "code": "3993", "is_bakery": True, "fragile": False},
+
+    "baguette" : {"name": "French Baguettes (3ct)", "price": 4.55, "weight": 4.5, "category": "bakery", "code": " 3421", "is_bakery": True, "fragile": True},
+
+    "bagels" : {"name": "Everything Bagels", "price": 7.99, "weight": 3.4, "category": "bakery", "code": "3219", "is_bakery": True, "fragile": False},
+
+    "sourdough" : {"name": "Sourdough Bread", "price": 5.67, "weight": 1.2, "category": "bakery", "code": "3110", "is_bakery": True, "fragile": False},
+
+    "chocolatechipcookies" : {"name": "Chocolate Chip Cookies", "price": 14.59, "weight": 7.0, "category": "bakery", "code": "3021", "is_bakery": True, "fragile": False},
+
+    "cinnamonbuns" : {"name": "Cinnamon Buns", "price": 6.99, "price": 12.99, "weight": 4.6, "category": "bakery", "code": "3481", "is_bakery": True, "fragile": False},
+
+    #raw meat / seafood
+
+    ""
 
 
 
