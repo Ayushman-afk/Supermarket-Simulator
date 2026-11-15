@@ -143,7 +143,27 @@ store_items = {
 
     # frozen foods
 
-    
+    "icecream": {"name": "Vanilla Ice Cream", "price": 7.89, "weight": 1.2, "category": "frozen", "code": "5412", "is_frozen": True, "fragile": False },
+
+    "frozenpeas" : {"name": "Farm Fresh Frozen Peas", "price": 5.99, "weight": 2.2, "category": "frozen", "code": "5621", "is_frozen": True, "fragile": False },
+
+    "frozencorn" : {"name": "Farm Fresh Frozen Corn", "price": 4.99, "weight": 2.1, "category": "frozen", "code": "5269", "is_frozen": True, "fragile": False },
+
+    "frozenpizza" : {"name": "Frozen Pepperoni Pizza", "price": 7.99, "weight": 1.2, "category": "frozen", "code": "5111", "is_frozen": True, "fragile": False },
+
+    "chickennuggets" : {"name": "Lightly Seasoned and Breaded Chicken Nuggets", "price": 12.99, "weight": 4.5, "category": "frozen" ,"code" : "5848", "is_frozen": True, "fragile": False },
+
+    "frozenberries" : {"name": "Frozen Mixed Berries", "price": 5.99, "weight": 0.9, "category": "frozen", "code": "5673", "is_frozen": True, "fragile": False },
+
+    "waffles": {"name": "Frozen Chocolate Chip Waffles", "price": 8.99, "weight": 1.3, "category": "frozen", "code": "5000", "is_frozen": True, "fragile": False },
+
+    "fries": {"name": "Frozen Crinkle Cut Fries", "price": 12.99, "weight": 2.4, "category": "frozen", "code": "5101", "is_frozen": True, "fragile": False },
+
+    "burritos": {"name": "Frozen Breakfast Burritos", "price": 4.99, "weight": 1.2, "category": "frozen", "code": "5902", "is_frozen": True, "fragile": False },
+
+    "popsicles": {"name": "Red White and Blue Popsicles", "price": 2.79, "weight": 3.1, "category": "frozen", "code": "5491", "is_frozen": True, "fragile": False },
+
+
 
 
 
