@@ -52,23 +52,54 @@ valid_coupon_commands = ["accept", "reject"]
 valid_bag_commands = ["new", "inspect"]
 
 store_items = {
-    "bananas": {"name": "Organic Bananas", "price": 1.49, "weight": 1.5, "category": "produce", "code": "1001", "is_produce": True, "fragile": False},
+    #produce values
+    "bananas": {"name": "Organic Bananas", "price": 1.49, "weight": 1.5, "category": "produce", "code": "1451", "is_produce": True, "fragile": False},
 
-    "avocados": {"name": "Avocados (3ct)", "price": 2.79, "weight" : 1.3, "category": "produce", "code": "1002", "is_produce": True, "fragile": True},
+    "avocados": {"name": "Avocados (3ct)", "price": 2.79, "weight" : 1.3, "category": "produce", "code": "1542", "is_produce": True, "fragile": True},
 
-    "apples" : {"name": "Honeycrisp Apples", "price": 3.99, "weight": 1.7, "category": "produce", "code": "1003", "is_produce": True, "fragile": False},
+    "apples" : {"name": "Honeycrisp Apples", "price": 3.99, "weight": 1.7, "category": "produce", "code": "1323", "is_produce": True, "fragile": False},
 
-    "onions" : {"name": "Red Onions", "price": 4.50, "weight": 3.2, "category": "produce", "code": "1004", "is_produce": True, "fragile": False},
+    "onions" : {"name": "Red Onions", "price": 4.50, "weight": 3.2, "category": "produce", "code": "1234", "is_produce": True, "fragile": False},
 
-    "carrots" : {"name": "Carrots", "price": 2.00, "weight": 0.7, "category": "produce", "code": "1005", "is_produce": True, "fragile": False},
+    "carrots" : {"name": "Carrots", "price": 2.00, "weight": 0.7, "category": "produce", "code": "1765", "is_produce": True, "fragile": False},
 
-    "potatoes" : {"name": "Russet Potatoes", "price": 7.99, "weight": 5.6, "category": "produce", "code": "1006", "is_produce": True, "fragile": False},
+    "potatoes" : {"name": "Russet Potatoes", "price": 7.99, "weight": 5.6, "category": "produce", "code": "1466", "is_produce": True, "fragile": False},
 
-    "garlic" : {"name": "Garlic", "price": 4.99, "weight": 1.2, "category": "produce", "code": "1007", "is_produce": True, "fragile": False},
+    "garlic" : {"name": "Garlic", "price": 4.99, "weight": 1.2, "category": "produce", "code": "1457", "is_produce": True, "fragile": False},
 
-    "brocoli" : {"name": "Garlic", "price": 2.99, "weight": 0.5, "category": "produce", "code": "1008", "is_produce": True, "fragile": False},
+    "brocoli" : {"name": "Garlic", "price": 2.99, "weight": 0.5, "category": "produce", "code": "1858", "is_produce": True, "fragile": False},
 
-    
+    "strawberries" : {"name": "Strawberries", "price": 5.67, "weight": 1.1, "category": "produce", "code": "1469", "is_produce": True, "fragile": True},
+
+    "bellpeppers" : {"name": "Bell Peppers", "price": 9.79, "weight": 1.4, "category": "produce", "code": "1460", "is_produce": True, "fragile": True},
+
+    # dairy + fridge values
+
+    "milk" : {"name": "Organic Milk", "price": 5.99, "weight": 3.3, "category": "dairy", "code": "2341", "": True, "fragile": False},
+
+    "cheddarcheese": {"name": "Cheddar Cheese (pre-shredded)", "weight" : 2.3, "price": 6.79, "category": "dairy", "code": "2992", "is_dairy": True, "fragile": False},
+
+    "goatmilk" : {"name": "Organic Goat Milk", "price": 8.99, "weight": 1.7, "category": "dairy", "code": "2866", "is_dairy": True, "fragile": False},
+
+    "almondmilk": {"name": "Organic Almond Milk", "price": 3.99, "weight": 1.6, "category": "dairy", "code": "2456", "is_dairy": True, "fragile": False},
+
+    "eggs" : {"name": "Egg carton (12 ct)", "price": 12.99, "weight": 6.6, "category": "refrigerated", "code": "2365", "is_dairy": True, "fragile": True },
+
+    "butter" : {"name": "Butter container", "price": 8.79, "weight": 4.5, "category": "dairy", "code": "2785", "is_dairy": True, "fragile": False},
+
+    "greekyogurt" : {"name": "Greek Yogurt Tub", "price": 6.99, "weight": 5.0, "category": "dairy", "code": "2223", "is_dairy": True, "fragile": False},
+
+    "creamcheese" : {"name": "Cream Cheese Brick", "price": 4.95, "weight" : 1.2, "category": "dairy", "code": "2371", "is_dairy": True, "fragile": True},
+
+    "sourcream" : {"name": "Sour Cream Tub", "price": 4.7, "weight": 2.4, "category": "dairy", "code": "2322", "is_dairy": True, "fragile": False},
+
+    "orangejuice" : {"name": "Freshly Squeezed Organic Orange Juice", "price": 7.89, "weight": 5.6, "category": "refrigerated", "is_dairy": True, "fragile": False},
+
+    "hummus" : {"name": "Organic Sourced Hummus", "price": 8.99, "weight": 5.9, "category" : "refrigerated", "is_dairy": True, "fragile": False},
+
+
+
+
 }
 
 
