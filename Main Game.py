@@ -163,6 +163,75 @@ store_items = {
 
     "popsicles": {"name": "Red White and Blue Popsicles", "price": 2.79, "weight": 3.1, "category": "frozen", "code": "5491", "is_frozen": True, "fragile": False },
 
+    #canned items
+
+    "peanutbutter": {"name": "Organic Peanut Butter", "price": 4.99, "weight": 1.1, "category": "canned", "code": "6111", "is_canned": True, "fragile": False },
+
+    "soup": {"name": "Tomato Soup (6ct)", "price":6.99, "weight": 1.2, "category": "canned", "code": "6732", "is_canned": True, "fragile": False },
+
+    "pasta": {"name": "Pasta", "price": 8.99, "weight": 1.2, "category": "canned", "code": "6000", "is_canned": True, "fragile": False },
+
+    "marinara" : {"name": "Herby Marinara Sauce", "price": 7.99, "weight": 3.4, "category": "canned", "code": "6465", "is_canned": True, "fragile": False },
+
+    "oliveoil": {"name": "Organic Olive Oil", "price": 19.99, "weight": 7.0, "category": "canned", "code": "6666", "is_canned": True, "fragile": True },
+
+    "rice": {"name": "White Rice", "price": 4.99, "weight": 3.0, "category": "canned", "code": "6001", "is_canned": True, "fragile": False },
+
+    "blackbeans": {"name": "Mexican Style Black Beans", "price": 5.79, "weight": 2.0, "category": "canned", "code": "6200", "is_canned": True, "fragile": False },
+
+    "flour" : {"name": "Whole Wheat Flour", "price": 23.99, "weight": 4.6, "category": "canned", "code": "6232", "is_canned": True, "fragile": False },
+
+    "coffee": {"name": "Dark Roast Coffee", "price": 7.89, "weight": 2.3, "category": "canned", "code": "6772", "is_canned": True, "fragile": False },
+
+    "cereal": {"name": "Honey Oat Cereal", "price": 12.99, "weight": 1.2, "category": "canned", "code": "6121", "is_canned": True, "fragile": False },
+
+    #Snacks
+
+    "chips": {"name": "Potato Chips", "price": 5.89, "weight": 0.7, "category": "snack", "code": "7100", "is_snack": True, "fragile": True },
+
+    "sodapack": {"name": "Soda Pack (12ct)", "price": 12.79, "weight": 7.9, "category": "snack", "code": "7001", "is_snack": True, "fragile": False },
+
+    "salsa" : {"name": "Mexican Medium Salsa", "price": 4.59, "weight": 1.2, "category": "canned", "code": "7821", "is_snack": True, "fragile": False },
+
+    "energydrink" : {"name": "Energy Drink", "price": 1.99, "weight": 0.5, "category": "canned", "code": "7122", "is_snack": True, "fragile": False },
+
+    "trailmix" : {"name": "Assorted Trail Mix", "price": 3.29, "weight": 0.3, "category":"canned", "code":"7899", "is_snack": True, "fragile": False },
+
+    "chocolate" : {"name": "Dark Chocolate", "price": 1.29, "weight": 0.1, "category": "canned", "code": "7991", "is_snack": True },
+
+    "tortillachips": {"name": "Tortilla Chips", "price": 5.79, "weight": 0.3, "category": "canned", "code": "7182", "is_snack": True, "fragile": False },
+
+    "granola": {"name": "Mixed Granola", "price": 3.99, "weight": 0.9, "category": "canned", "code": "7000", "is_snack": True, "fragile": False },
+
+    "proteinshake" : {"name": "Chocolate Protein Shake", "price": 2.29, "weight": 0.3, "category": "snack", "code": "7110", "is_snack": True, "fragile": False },
+
+    "crackers" : {"name": "Honey Crackers", "price": 4.59, "weight": 1.1, "category": "snack", "code": "7129", "is_snack": True, "fragile": False },
+
+    #household chemicals/items
+
+    "bleach" : {"name": "Bleach", "price": 6.89, "weight": 1.4, "category": "household", "code": "8201", "is_house": True, "fragile": False },
+
+    "disinfectant" : {"name": "Household Disinfectant", "price": 11.85, "weight": 0.3, "category": "household", "code": "8100", "is_house": True, "fragile": False },
+
+    "wipes" : {"name": "Lemon Lime Wipes", "price": 14.59, "weight": 0.8, "category": "household", "code": "8110", "is_house": True, "fragile": False },
+
+    "hydroperoxide" : {"name": "Household Hydroperoxide", "price": 14.29, "weight": 1.0, "category": "household", "code": "8001", "is_house": True, "fragile": False },
+
+    "tissues" : {"name": "Kitchen Tissues", "price": 10.19, "weight": 0.9, "category": "household", "code": "8017", "is_house": True, "fragile": False },
+
+    "toiletpaper" : {"name": "2-ply Toilet Paper", "price": 9.89, "weight": 1.0, "category": "household", "code": "8921", "is_house": True, "fragile": False },
+
+    "floorcleaner" : {"name": "Flower Floor Cleaner", "price": 7.90, "weight": 1.2, "category": "household", "code": "8012", "is_house": True, "fragile": False },
+
+    "cleaningspray" : {"name": "Lime Clean Spray", "price": 12.95, "weight": 1.9, "category": "household", "code": "8000", "is_house": True, "fragile": False },
+
+    "laundrydetergent" : {"name": "Laundry Detergent", "price": 8.90, "weight": 3.1, "category": "household", "code": "8123", "is_house": True, "fragile": False },
+
+    "water" : {"name": "Spring Water", "price": 4.19, "weight": 6.8, "category": "household", "code": "8233", "is_house": True, "fragile": False },
+
+
+
+
 
 
 
