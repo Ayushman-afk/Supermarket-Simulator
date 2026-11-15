@@ -470,4 +470,54 @@ customers = [
     }
 ]
 
+upgrades = {
+    "sticky_note": {
+        "name": "Plu Sticky Note",
+        "cost": 25.00,
+        "description": "Displays the 5 most common codes on your screen"
+    },
+    "heavy_bags": {
+        "name": "Heavy Bags",
+        "cost": 40.00,
+        "description": "Increases Max Bag Weight Capacity From 15.0lbs to 22.0lbs"
+    },
+    "laser_scanner": {
+        "name": "Dual Laser Barcode Scanner",
+        "cost": 55.00,
+        "description": "Eliminates the random chance of a laser jam happening"
+    },
+    "auto_calc": {
+        "name": "Automatic Change Dispenser",
+        "cost": 70.00,
+        "description": "Automatically calculates Changes and gives it to the customer"
+    },
+    "insulated_bags": {
+        "name": "Thermal Freezer Bags",
+        "cost": 85.00,
+        "description": "Doubles the Bonus Tip earned when bagging frozen items"
+    },
+    "express_belt": {
+        "name": "Turbo Conveyor belt",
+        "cost": 100.00,
+        "description": "Reduces Total Shift time by 15 seconds each Shift"
+    }
+}
+
+register_events = [
+    {"type": "jam", "message": "Scanner Jam Type 'clear' to reset the laser", "penalty_seconds": 3, "action": "clear"},
+
+    {"type": "price_check","message": "Missing Tag! Type 'call' to ask a manger for a price check.", "penalty_seconds":5, "action": "call" },
+
+    {"type": "recipt_paper", "message": "Out of Receipt Paper Type 'reload' to swap the roll", "penalty_seconds":4, "action": "reload"},
+
+    {"type": "bag_tangle", "message": "Bags Stuck Together Type 'Pull; to separate them", "penalty_seconds":2, "action": "pull"},
+
+    {"type": "scale_reset", "message":"Product Scale off zero Type 'reset' to calibrate", "penalty_seconds":3, "action": "reset"},
+
+    {"type": "spill", "message": "Sticky conveyor belt Type 'wipe' to clean the belt up ", "penalty_seconds":4, "action": "wipe"},
+
+    {"type": "coupon_crinkle", "message": "Crumples Coupon Type 'smooth' to uncrinkle the coupon", "penalty_seconds":2, "action": "smooth"},
+
+    {"type": "card_chip", "message": "Chip Reader Error Type 'swipe' to use the magnetic strip", "penalty_seconds":3, "action": "swipe"},
+]
 
