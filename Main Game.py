@@ -521,3 +521,4 @@ register_events = [
     {"type": "card_chip", "message": "Chip Reader Error Type 'swipe' to use the magnetic strip", "penalty_seconds":3, "action": "swipe"},
 ]
 
+from functions import *

@@ -2,7 +2,7 @@ import random
 import time
 import os
 import sys
-from game_data import *
+from __main__ import *
 
 #function 1 - finds the folder where main.py or the complied .exe is running so supersimsave.txt always saves right next to the game file
 
@@ -96,3 +96,91 @@ def load_game(filepath):
         loaded_tips = round(float(text_tips), 2)
         loaded_mistakes = int(text_mistakes)
         loaded_best_time = round(float(text_best_time), 2)
+
+
+        if loaded_balance < 0:
+            loaded_balance = 0.00
+
+        if loaded_shift < 1:
+            loaded_shift = 1
+
+        if loaded_customers < 0:
+            loaded_customers = 0
+
+        if loaded_tips < 0:
+            loaded_tips = 0.00
+
+        if loaded_mistakes < 0:
+            loaded_mistakes = 0
+
+        if loaded_best_time < 0:
+            loaded_best_time = 999.99
+
+
+        loaded_upgrades = []
+        if text_upgrades != "none" and text_upgrades != "":
+            raw_list = text_upgrades.split(",")
+            for raw_key in raw_list:
+                clean_key = raw_key.strip()
+                if clean_key in upgrades_catalog:
+                    if clean_key not in loaded_upgrades:
+                        loaded_upgrades.append(clean_key)
+
+
+        return (
+            loaded_balance,
+            loaded_shift,
+            loaded_customers,
+            loaded_tips,
+            loaded_mistakes,
+            loaded_best_time,
+            loaded_upgrades,
+        )
+
+    except:
+        print("Save File is missing Data or corrupted, Creating a new save file.")
+        default_upgrades = []
+        save_game(filepath, 0.00, 1,0, 0.00, 0, 999.99, default_upgrades)
+        return 0.00, 1, 0, 0.00, 0, 999.99, []
+
+
+#function 4- prompts the player to type yes before wiping all save progress.
+def reset_save(filepath):
+    print("RESET SAVE DATA WARNING")
+    print("This Will permanently erase your bank balance,")
+    print("shift progress, career stats, and upgrades.")
+
+    answer = intput("\nType 'yes' to erase everything and reset: ").strip().lower()
+
+    if answer == "yes":
+        double_check = input("Type 'confirm' to complete the reset: ").strip().lower()
+        if double_check == "confirm":
+            fresh_upgrades = []
+            save_game(filepath, 0,1,0,0.00,0,999.99, fresh_upgrades)
+            print("\n Your save file has been completely reset to default")
+            return 0.00, 1, 0, 0.00 , 0, 999.99, []
+        else:
+            print("cancelled")
+            return load_game(filepath)
+    else:
+        print("cancelled")
+        return load_game(filepath)
+
+
+#function 5 - shows career stats
+
+def show_career_stats(
+        bank_balance,
+        shift_num,
+        total_customers_served,
+        alltime_tips_earned,
+        total_mistakes,
+        best_shift_time,
+        upgrades
+):
+    completed_shifts = shift_num - 1
+
+    if completed_shifts == 0:
+        rank_title = "Trainee Cashier"
+    elif completed_shifts <= 2:
+        rank_title = "Junior Checkout Cashier"
