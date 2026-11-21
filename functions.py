@@ -268,4 +268,174 @@ def show_plu_master_key():
                 for q_num in range(total_questions):
                     random_key = random.choice(produce_keys)
                     random_item = random.choice[random_key]
-                    
+                    expected_code = random_item["code"].strip()
+                    user_guess = input("Question " + str(q_num + 1) + ": Enter Plu Code for "+ random_item["name"] + ": ").strip()
+                    if user_guess == expected_code:
+                        print("Correct")
+                        correct_count += 1
+                    else:
+                        print("Wrong, The Plu Code for " + random_item["name"] + "is " + expected_code + ".")
+                print("Quiz Finished, Score = " + str(correct_count) + "out of " + str(total_question))
+
+
+# function 7 - open Upgrade Shop
+
+def open_upgrade_shop(bank_balance, upgrades):
+    while True:
+        print("Super Mart Upgrade Shop")
+        print("Available Bank Balance: ${}".format(bank_balance))
+        print("Upgrades Owned: "+ str(len(upgrade)) + "/" + str(len(upgrade_keys)))
+
+        index = 0
+
+        while index < len(upgrade_keys):
+            key = upgrade_keys[index]
+            item_info = upgrade_catalog[key]
+            number_label = str(index + 1) + ". "
+            padded_name = item_info["name"].ljust(30)
+            item_cost = item_info["cost"]
+
+            if key in upgrades:
+                status_text = "Owned"
+            else:
+                status_text = "$ {:.2f}".format(item_cost)
+
+            print(number_label + padded_name + " | " + status_text)
+            print("  Effect: " + item_info["description"])
+            index += 1
+
+        print("0. Leave Upgrade Shop")
+        choice = input("\n Enter Upgrade number to buy (or 0 to leave): ").strip().lower()
+
+        if choice.isdigit == True:
+            choice_num = int(choice)
+
+            if choice_num == 0:
+                print("Leaving Upgrade Shop")
+                break
+
+            elif choice_num >= 1 and choice_num <= len(upgrade_keys):
+                selected_key = upgrade_keys[choice_num - 1]
+                selected_upgrade = upgrade_catalog[selected_key]
+                selected_name = selected_upgrade["name"]
+                selected_cost = select_upgrade["cost"]
+
+                if selected_key in upgrades:
+                    print("Your Already Own: "+ selected_name)
+                elif selected_cost > bank_balance:
+                    amount_needed = round(selected_cost - bank_balance, 2)
+                    print("Not Enough Money, Need: ${:.2f}".format(amount_needed) + "more!")
+                else:
+                    new_balance = round(bank_balance - selected_cost, 2)
+                    print("\nPurchase "+ selected_name + "for ${:.2f}".format(selected_cost))
+                    print("Remaining Balance will be: ${:.2f}".format(new_balance))
+                    confirm = input("Type 'yes' to confirm purchaseL ").strip().lower()
+
+                    if confirm == "yes":
+                         bank_balance = new_balance
+                         upgrades.append(selected_key)
+                         print("Purchased " + selected_name)
+                    else:
+                        print("Purchase Cancelled")
+            else:
+                print("Invalid Number. Please Choose Between 0 and "+ str(len(upgrade_keys) + "."))
+        else:
+            print("Invalid Input. Please Enter a Number")
+
+    return bank_balance, upgrades
+
+#function 8 - get shift settings
+
+def get_shift_settings(shift_num):
+    if shift_num == 1:
+        num_customers = 3
+        min_items = 4
+        max_items = 6
+        coupons_per_customer = 1
+        event_chance = 0.1
+        return num_customers, min_items, max_items, coupons_per_customer,event_chance
+    elif shift_num == 2:
+        num_customers = 4
+        min_items = 4
+        max_items = 7
+        coupons_per_customer = 1
+        event_chance = 0.15
+        return  num_customers, min_item, max_items, coupons_per_customer, event_chance
+    elif shift_num == 3:
+        num_customers = 4
+        min_items = 5
+        max_items = 8
+        coupons_per_customer = 2
+        event_chance = 0.2
+        return num_customers, min_items, max_items, coupons_per_customer, event_chance
+    elif shift_num == 4:
+        num_customers = 5
+        min_items = 6
+        max_items = 9
+        coupons_per_customer = 2
+        event_chance = 0.25
+        return num_customer, min_items, max_items, coupons_per_customer, event_chance
+    else:
+        num_customers = 6
+        min_items = 7
+        max_items = 11
+        coupons_per_customer = 3
+        event_chance = 0.3
+        return num_customer, min_items, max_items, coupons_per_customer, event_chance
+
+
+#function 9 - generate customer(min_items, max_items)
+
+def generate_customer(min_items, max_items):
+     customer = random.choice(customers)
+     cart_size = random.randint(min_items, max_items)
+     all_keys = list(store_items.keys())
+     cart_keys = []
+
+     spelling_map = {
+         "muffin": "muffins",
+         "banana": "bananas",
+         "cleaningwipes": "wipes",
+         "bellpepper": "bellpeppers",
+         "porkchops": "pork",
+         "bread": "whitebread",
+         "tortillachips": "tortillachips"
+     }
+
+     safe_preferred = []
+     for raw_key in customer["preferred_items"]:
+         if raw_key in store_items:
+            safe_preferred.append(raw_key)
+         elif raw_key in spelling_map:
+            mapped_key = spelling_map[raw_key]
+            if mapped_key in store_items:
+                safe-preferred.append(mapped_key)
+
+
+     count = 0
+     while count < cart_size:
+         roll = random.random()
+         if roll < 0.6 and len(safe_preferred) > 0:
+             picked_key  = random.choice(safe_preferred)
+     else:
+         picked_key = random.choice(all_keys)
+
+
+     cart_keys.append(picked_key)
+     count += 1
+
+     if customer["name"] == "Bill":
+         has_frozen = False
+         has_produce = False
+         for k in cart_keys:
+             if store_items[k]["category"] == "frozen":
+                 has_frozen = True
+             if store_items[k]["category"] == "produce":
+
+
+
+
+
+
+
+

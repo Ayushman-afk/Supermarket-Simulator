@@ -1,7 +1,7 @@
 import time
 import random
 
-#- Pregame defined variables. (total - 115) (80 items of produce) (25 coupons)
+#- Pregame defined variables. (total - 149) (80 items of produce) (25 coupons) (20 Customers) (8 register events) (6 upgrades)
 
 save_file_name = "SuperSimSave.txt"
 shift_num = 1
