@@ -30,8 +30,8 @@ def save_game(
         alltime_tips_earned,
         total_mistakes,
         best_shift_time,
-        upgrades
-):
+        upgrades):
+
     if len(upgrades) == 0:
         upgrades_text = "No Upgrades"
     else:
@@ -431,6 +431,89 @@ def generate_customer(min_items, max_items):
              if store_items[k]["category"] == "frozen":
                  has_frozen = True
              if store_items[k]["category"] == "produce":
+                 has_produce = True
+         if has_frozen == False:
+             cart_keys[0] = "icecream"
+         if has_produce == False and len(cart_keys) > 1:
+             cart_keys[1] = "avocados"
+     if customer["name"] == "Freezer Man":
+         frozen_total = 0
+         for k in cart_keys:
+             if store_items[k]["category"] == "frozen":
+                 frozen_total += 1
+         if frozen_total < 2 and len(cart_keys) >= 2:
+             cart_keys[0] = "icecream"
+             cart_keys[1] = "waffles"
+
+     if customer["name"] == "College Kid":
+         if "energydrink" not in cart_keys:
+             cart_keys[0] = "energydrink"
+
+     return customer, cart_keys
+
+#function 10 - run_scanning_stage
+
+def run_scanning_stage(cart_keys, upgrades, event_chance):
+    time_penalties = 0
+    total_items = len(cart_keys)
+
+    print("Stage 1: Item Scanning")
+    print("Items to Scan: "+ str(total_items))
+
+    if "sticky_note" in upgrades:
+        print("\n[PLU Stick Note - 5 Main Produce Codes]")
+        main = ["bananas", "avocados", "apples", "onions", "carrots"]
+        for m_key in main:
+            if m_key in store_items:
+                m_item = store_items[m_key]
+                print("  *" + m_item["name"].ljust(20) + " : " + m_item["code"].strip())
+
+    item_num = 0
+    for key in cart_keys:
+        item_num += 1
+        item = store_items[key]
+        item_name = item["name"]
+        item_code = item["code"]
+        item_price = item["price"]
+        item_cat = item["category"]
+
+        print("\n[Item " + str(item_num) + " of " + str(total_items) + "]")
+
+        if item.get("is_produce") != True:
+            print("Item      :" + item_name + " (" + item_cat + ")")
+            print("Barcode   :" + item_code + " | Price: ${:.2f}".format(item_price))
+            input("Press Enter to Scan Item")
+            print("beep")
+
+        else:
+            print("Produce   : " + item_name + "(${:.2f}".format(item_price) + ")")
+            print("Type the 4-digit PLU code (or type 'book' to look it up).")
+
+            while True:
+                typed = input("PLU Code > ").strip().lower()
+
+                if typed in valid_scan_commands:
+                    time_penalties += plu_time_penalty
+                    print("Looked Up in the PLU Book (+"+ str(plu_time_penalty) + "s penalty.")
+                    print("The PLU Code for" + item_name + "is:" + item_code)
+                elif typed == item_code:
+                    print("beep")
+                    break
+                else:
+                    if typed.isdigit() == False:
+                        print("wrong code, try again (enter 4 digits or 'book') ")
+                    elif len(typed) != 4:
+                        print("wrong code, try again (code must be 4 digits ")
+                    else:
+                        print("wrong code, try again")
+
+        if random.random() < event_chance:
+            event = random.choice(register_events)
+
+            if event["type"] == "jam" and "laser_scanner" in upgrades:
+                print("\n[Dual Laser Barcode Scanner Prevented a Scanner Jam]")
+            else:
+                print("Register Event")
 
 
 
