@@ -514,11 +514,149 @@ def run_scanning_stage(cart_keys, upgrades, event_chance):
                 print("\n[Dual Laser Barcode Scanner Prevented a Scanner Jam]")
             else:
                 print("Register Event")
+                print(event["message"])
+                print("(+" + str(event["penalty_seconds"]) + " seconds penalty addded)")
+                time_penalties += event["penalty_seconds"]
+
+                required_action = event["action"].strip().lower()
+                while True:
+                    player_action = input("Type Command to fix > ").strip().lower()
+                    if player_action == required_action:
+                        print("Issue Fixed")
+                        break
+                    else:
+                        print("Wrong Command, Type '" + required_action +"' to fix it")
+
+    print("\n Scanning Finished! Total Scanning penalties: +"+str(time_penalties) + "s")
+    return time_penalties
+
+# function 11 - run_coupon_stage
+
+def run_coupon_stage(cart_keys, shift_num, coupons_per_customer,customer = None):
+    total_discount = 0.0
+    stage_mistakes = 0
+
+    total_coupons = coupons_per_customer
+    if customer != None:
+        if customer["name"] == "Connor":
+            total_coupons = coupons_per_customer + 2
+
+    print("Stage 2: Coupon Check")
+
+    print("Active Shift: #" + str(shift_num) + " | Coupons Given: "+ str(total_coupons))
+
+    print("Cart Summary: ")
+    listed_keys = []
+    for x in cart_keys:
+        listed_keys.append(x)
+        qty = cart.keys.count(x)
+        print("  - " + store_items[x]["name"] + " (x" + str(qty) + ")")
 
 
+    for x in range(total_coupons):
+        coupon = random.choice(coupons)
+        c_text = coupon["text"]
+        c_item = coupon["item"]
+        c_min_qty = coupon["min_qty"]
+        c_max_shift = coupon["max_shift"]
+        c_discount = coupon["discount"]
+
+        print("\nCoupon #" + str(x + 2) + ":" + c_text)
+
+        is_valid = True
+        reasons = []
+
+        if c_item not in cart_keys:
+            is_valid = False
+            reasons.append("Item Not in cart")
+
+        if cart_keys.count(c_item) < c_min_qty:
+            is_valid = False
+            reasons.append("Cart Only Has " + str(cart_keys.count(c_item)) + ", But coupon requires" + str(c_min_qty) + ".")
+
+        if shift_num > c_max_shift:
+            is_valid = False
+            reasons.append("Coupon Expired at Shift #"  + str(c_max_shift) + " current shift is #" + str(shift_num) + ").")
+
+        while True:
+            decision = input("Accept Or Reject? ").strip().lower()
+            if decision in valid_coupon_commands:
+                break
+            else:
+                print("Invalid Choice. Please type 'accept' or 'reject'.")
+
+        if decision == "accept":
+            if is_valid == True:
+                total_discount = round(total_discount + c_discount, 2)
+                print("Accepted Valid Coupon, Discount -${:.2f}".format(c_discount))
+            else:
+                stage_mistakes += 1
+                print("Mistake, That Coupon Was Not Valid")
+                for x in reasons:
+                    print("  *" + r)
+        else:
+            if is_valid == True:
+                stage_mistakes += 1
+                print("Mistake That Coupon was Valid and Should've Been Accepted")
+            else:
+                 print("Good Catch, Rejected Valid Coupon")
+                 for x in reasons:
+                     print("  *" + r)
+
+    return round(total_discount, 2), stage_mistakes
+
+# function 12 - run_payment_stage
+
+def run_payment_stage(cart_keys, total_discount, upgrades):
+    print("Stage 3: Receipt And Payment")
+
+    subtotal = 0.0
+
+    for key in cart_keys:
+        subtotal = round(subtotal + store_items[key]["price"], 2)
+
+    applied_discount = round(total_discount, 2)
+    if applied_discount > subtotal:
+        applied_discount = subtotal
+
+    after_coupons = round(subtotal - applied_discount, 2)
+    if after_coupons < 0:
+        after_coupons = 0.0
+
+    tax_rate = 0.07
+    tax = round(after_coupons * tax_rate, 2)
+
+    final_total = round(after_coupons + tax, 2)
+
+    print("")
+    print(store.name.center(recipt_width))
+    print("-" * recipt_width)
+
+    for key in cart_keys:
+        raw_name = store_items["key"]["name"]
+        price_str = "${:.2f}".format(store_items["key"]["price"])
+        max_name_width = recipt_width - len(price_str) - 1
+        trimmed_name = raw_name[:max_name_width]
+        left_width = recipt_width - len(price_str)
+        print(trimmed_name.ljust(left_width) + price_str)
 
 
+    print("-" * recipt_width)
 
+    sub_str = "${:.2f}".format(subtotal)
+    print("Subtotal".ljust(recipt_width - len(sub_str)) + sub_str)
 
+    disc_str = "-${:.2f}".format(applied_discount)
+    print("Coupon Savings".ljust(recipt_width - len(disc-str)) + disc_str)
+
+    tax_str = "${:.2f}".format(tax)
+    print("Tax".ljust(recipt_width - len(tax_str)) + tax_str)
+
+    tot_str = "${:.2f}".format(final_total)
+    print("Total".ljust(recipt_width - len(tot-str)) + tot_str)
+    print("_" * recipt_width)
+    print("")
+
+    
 
 
