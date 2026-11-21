@@ -184,3 +184,88 @@ def show_career_stats(
         rank_title = "Trainee Cashier"
     elif completed_shifts <= 2:
         rank_title = "Junior Checkout Cashier"
+    elif completed_shifts <= 4:
+        rank_title = "Experienced Cashier"
+    elif completed_shifts <= 7:
+        rank_title = "Senior Register Operator"
+    elif completed_shifts <= 11:
+        rank_title = "Front End Shift lead"
+    else:
+        rank_title = "Super Mart Store Legend"
+
+    if total_customer_served > 0:
+        mistakes_per_customer = round(total_mistakes / total_customer_served, 2)
+    else:
+        mistakes_per_customer = 0.00
+
+    if completed_shits > 0:
+        average_shift_pay = round(alltime_tips_earned / completed_shifts, 2)
+    else:
+        average_shift_pay = 0.00
+
+    print("Super Mart Career Record")
+
+    print("Cashier Rank: " + rank_title)
+    print("Current Bank Balance: ${:.2f}".format(bank_balance))
+    print("Next Shift Number: #" + str(shift_num))
+    print("Shifts Completed: #" + str(completed_shifts))
+    print("Customer Served: "+ str(total_customers_served))
+    print("All Time Earnings: ${:.2f}".format(alltime_tips_earned))
+    print("Average Pay / Shift: ${:.2f}".format(average_shift_pay))
+    print("Total Mistakes Made: "+ str(total_mistakes))
+    print("Mistakes / Customer: {:.2f}".format(mistakes_per_customer))
+
+    if best_shift_time == 999.99:
+        print("Best Shift Time: No Shifts Yet")
+    else:
+        print("Best Shift Time: {:.2f}".format(best_shift_time) + "seconds")
+
+    if len(upgrades) == 0:
+        print("Owned Upgrades = None")
+    else:
+        print("Owned Upgrades (" + str(len(upgrades)) + " of "+ str(len(upgrade_catalog) + "):"))
+
+        for up_key in upgrade:
+            if up_key in upgrade_catalog:
+                up_name = upgrade_catalog[up_key]["name"]
+                up_desc = upgrade_catalog[up_key]["description"]
+                print("  *" + up_name + " - " + up_desc)
+            else:
+                print("  *" + up_key)
+    print("\n")
+
+#function 6 - plu master key
+
+def show_plu_master_key():
+    print("Plu Master Key")
+    print("Produce Name       | Plu Code | Price | Notes|")
+
+    produce_keys = []
+
+    for key in store_items:
+        item = store_items[key]
+        if item.get("is_produce") == True:
+            produce_keys.append(key)
+            padded_name = item["name"].ljust(20)
+            clean_code = item["code"].strip().ljust(8)
+            price_str = ("$ {:.2f}".format(item["price"])).ljust(6)
+
+            if item.get("fragile") == True:
+                note_str = "FRAGILE"
+            else:
+                noter_str = "Sturdy (" + str(item["weight"]) + " lbs"
+
+            print(padded_name + " | " + clean_code + " | " + price_str + " | " + note_str)
+
+
+        print("Total Produce Items: " + str(len(produce_keys)))
+
+        if len(produce) > 0:
+            practice_choice = input("\nType 'quiz' to practice Plu Codes (or press enter to return): ").strip().lower()
+            if practice_choice == "quiz":
+                correct_count = 0
+                total_question = 3
+                for q_num in range(total_questions):
+                    random_key = random.choice(produce_keys)
+                    random_item = random.choice[random_key]
+                    
