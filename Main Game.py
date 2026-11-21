@@ -19,7 +19,7 @@ alltime_tips_earned = 0.00
 #shift 4 = 5, 6, 9, 2, 0.25 (25%)
 #shift 5+ = 6, 7, 11, 3, 0.30 (30%)
 
-hazard_categories = ["chemical", "raw_meat"]
+hazard_categories = ["chemical", "raw_meat", "rawmeat", "household"]
 fresh_categories = ["produce", "bakery"]
 cold_categories = ["frozen", "dairy"]
 standard_max_bag_weight = 15 #(lbs)
@@ -67,7 +67,7 @@ store_items = {
 
     "garlic" : {"name": "Garlic", "price": 4.99, "weight": 1.2, "category": "produce", "code": "1457", "is_produce": True, "fragile": False},
 
-    "brocoli" : {"name": "Garlic", "price": 2.99, "weight": 0.5, "category": "produce", "code": "1858", "is_produce": True, "fragile": False},
+    "broccoli" : {"name": "Broccoli", "price": 2.99, "weight": 0.5, "category": "produce", "code": "1858", "is_produce": True, "fragile": False},
 
     "strawberries" : {"name": "Strawberries", "price": 5.67, "weight": 1.1, "category": "produce", "code": "1469", "is_produce": True, "fragile": True},
 
@@ -109,7 +109,7 @@ store_items = {
 
     "tortillas" : {"name": "Flour Tortillas (12ct)", "price": 3.45, "weight": 2.3, "category": "bakery", "code": "3993", "is_bakery": True, "fragile": False},
 
-    "baguette" : {"name": "French Baguettes (3ct)", "price": 4.55, "weight": 4.5, "category": "bakery", "code": " 3421", "is_bakery": True, "fragile": True},
+    "baguette" : {"name": "French Baguettes (3ct)", "price": 4.55, "weight": 4.5, "category": "bakery", "code": "3421", "is_bakery": True, "fragile": True},
 
     "bagels" : {"name": "Everything Bagels", "price": 7.99, "weight": 3.4, "category": "bakery", "code": "3219", "is_bakery": True, "fragile": False},
 
@@ -470,7 +470,7 @@ customers = [
     }
 ]
 
-upgrades = {
+upgrades_catalog = {
     "sticky_note": {
         "name": "Plu Sticky Note",
         "cost": 25.00,
