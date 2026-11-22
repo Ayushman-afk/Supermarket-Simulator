@@ -744,7 +744,130 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
 
             if cmd.isdigit() == True:
                 bag_num = int(cmd)
-                if bag_num >= 1 and bag_num
+                if bag_num >= 1 and bag_num and bag_num <= len(bags):
+                    bags[bag_num - 1].append(key)
+                    print("Placed " + item_name + " into bag" + str(bag_num) + ".")
+                    break
+                else:
+                    print("Invalid Bag Number. Choose between 1 and " + str(len(bags)) + ".")
+            elif cmd == "new":
+                if len(bags) < max_bags_per_order:
+                    bags.append([key])
+                    print("Opened Bag " + str(len(bags)) + " and placed" + item_name + " inside")
+                    break
+                else:
+                    print("Bag Limit reached (" + str(max_bags_per_order) + " bags max)")
+            elif cmd == "inspect":
+                print("Bag Inspection")
+                for x in range(len(bags)):
+                    bag_w = 0.0
+                    bag_names = []
+                    for x in bags[b]:
+                        bag_w = round(bag_w + store_items[x]["weight"], 2)
+                        bag_names.append(store_items[x]["name"] + " (" + store_items[x]["category"] + ")")
+                        if len(bag_names) == 0:
+                            print("Bag " + str(b + 1) + "[0.0 / " + str(max_weight) + " lbs]: empty")
+                        else:
+                            print("Bag " + str(b + 1) + " [" + str(bag_w) + " / " + str(max_weight) + " lbs] " + ", ".join(bag_names))
+            else:
+                print("Invalid Command. Enter a bag number, 'new' or 'inspect'.")
+
+    print("Bagging Inspection")
+
+    stage_mistake = 0
+    frozen_tip_bonus = 0.0
+
+    for x in range(len(bags)):
+        bag = bags[x]
+        problems = []
+
+        bag_weight = 0.0
+        for k in bag:
+            bag_weight = round(bag_weight + store_items[k]["weight"],2)
+
+        if bag_weight > max_weight:
+            stage_mistakes += 1
+            problems.append("Overweight (" + str(bag_weight) + " lbs > " + str(max_weight) + " lbs)")
+
+        crushed = False
+        for x in range(len(bag)):
+           for y in range(len(bag)):
+               if x == y:
+                   continue
+               item_x = store_items[bag[x]]
+               item_y = store_items[bag[y]]
+               if item_x["weight"] > heavy_item_limit and item_y.get("fragile") == True:
+                   crushed = True
+
+        if crushed == True:
+            stage_mistakes += 1
+            problems.append("Heavy Item crushed a Fragile item")
+
+        has_hazard = False
+        has_fresh = False
+        for k in bag:
+            cat = store_items[k]["category"]
+            if cat in hazard_categories:
+                has_hazard = true
+            if cat in fresh_categories:
+                has_fresh = True
+
+        if has_hazard == True and has_fresh == True:
+            stage_mistakes += 1
+            problems.append("Hazard/Raw meat mixed with fresh produce/bakery")
+
+        if customer != None:
+            if customer["name"] == "Tim":
+                has_meat = False
+                has_non_meat = False
+                for x in bag:
+                    if store_items[x]["category"] == "rawmeat":
+                        has_meat = True
+                    else:
+                        has_non_meat = True
+                if has_meat == True and has_non_meat == True:
+                    stage_mistakes += 1
+                    problems.append("Tim asked to keep his raw meat completely separate")
+
+            if customer["name"] == "Deep Cleaner Cory":
+                has_chem = False
+                has_prod = False
+                for x in bag:
+                    if store_items[x]["category"] == "household":
+                        has_chem = True
+                    if store_items[x]["category"] == "produce":
+                        has_prod = True
+                if has_chem == True and has_prod == True:
+                    stage_mistake += 1
+                    problems.append("Cory Asked Not to Mix His cleaning Supplies with His Produce")
+
+            if customer["name"] == "Weekend Baker":
+                has_bakery = False
+                has_heavy_for_bakery = False
+                for k in bag:
+                    if store_items[k]["category"] == "bakery":
+                        has_bakery = True
+                    if store_items[k]["weight"] > 3.0:
+                        has_heavy_for_bakery = True
+                if has_bakery == True and has_heavy_for_bakery == True:
+                    stage_mistakes += 1
+                    problems.append("Weekend Baker's baked goods were packed with heavy items")
+
+        frozen_count = 0
+        for x in bag:
+            if store_items[x]["category"] == "frozen":
+                frozen_count += 1
+
+        if frozen_count >= 2:
+            frozen_tip_bonus = round(frozen_tip_bonus + bonus_per_bag, 2)
+
+        if len(problems) == 0:
+            print("Bag " + str(b + 1) )
+
+
+
+
+
 
 
 
