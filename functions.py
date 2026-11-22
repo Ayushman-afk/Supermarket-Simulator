@@ -409,7 +409,7 @@ def generate_customer(min_items, max_items):
          elif raw_key in spelling_map:
             mapped_key = spelling_map[raw_key]
             if mapped_key in store_items:
-                safe-preferred.append(mapped_key)
+                safe_preferred.append(mapped_key)
 
 
      count = 0
@@ -996,3 +996,44 @@ def play_shift(
     print("Customer Tips: ${:.2f}".format(shift_tips))
     print("Total Shift Pay: ${:.2f".format(pay))
     print("New Bank Balance: ${:.2f}".format(bank_balance))
+
+
+# function 16 - show_cashier_handbook
+
+def show_cashier_handbook():
+    print("SUPER MART CASHIER HANDBOOK")
+
+    print("\n[1] Stage 1: Scanning & and Register Events")
+    print("   - Regular items show a barcode: press enter to scan.")
+    print("   - Produce items have NO barcode: enter their 4 digit Plu Code")
+    print("   - Type 'book' during produce scanning to look up the code (+5 seconds penalty)")
+    print("   - If a register event pos up, type the exact fix word shown.")
+
+    print("\n[2] Stage 2: Coupon Validation")
+    print(" - Only Type 'accept' if all 3 rule passed")
+    print(" 1. The required item is actually in the customer's cart.")
+    print(" 2. The cart Quantity is at least the coupon's minimum quantity")
+    print(" 3. The Current shift number is not above the coupon's expiration shift")
+
+    print("\n[3] Stage 3: Payment and Change")
+    print(" - Card Payments process automatically")
+    print(" - If cash change is $0.25 or less, the customer lets you keep it as a tip")
+    print(" - Otherwise, type the exact change owed")
+
+    print("\n[4] Stage 4: Bagging Rules")
+    print(" - Standard Bag limit is 15.0 lbs (22.0 lbs with the Heavy Bag Upgrade")
+    print(" - Never put a heavy item (over 4.0 lbs) with a fragile item")
+    print(" - Never Mix raw meat or houshold chemicals with produce or bakery items")
+    print(" - Put 2 or more Frozen items in the same bag for +$1.50 tip bonus")
+    print(" - Pay Close attention to each customer's greeting for a special requests")
+
+    print("\n[5] Stage 5: Shift Grading")
+    print(" - Grade S: 0 Mistakes and 60.0s or faster (+$10.00 bonus)")
+    print(" - Grade A: 0 Mistakes and over 60.0s (+$5.00 bonus")
+    print(" - Grade B: 1-2 Mistakes (+$2.00 bonus")
+    print(" - Grade C: 3-4 Mistakes (+$0.00 penalty)")
+    print(" - Grade F: 5+ Mistakes (-$5.00 penalty, caps at $0.00")
+
+
+
+

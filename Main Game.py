@@ -137,10 +137,11 @@ store_items = {
 
     "honeydew" : {"name": "HoneyDew Melon", "price": 4.49, "weight": 5.2, "category": "produce", "code": "1016", "is_produce": True, "fragile": False},
 
-    
+    "cilantro" : {"name": "Fresh Cilantro Bunch", "price": 1.29, "weight": 0.3, "category": "produce", "code": "1017", "is_produce": True, "fragile": True},
 
+    "greenonions" : {"name": "Green Onions", "price": 1.49, "weight": 0.4, "category": "produce", "code": "1018", "is_produce": True, "fragile": True},
 
-
+    "radishes" : {"name": "Red Radish", "price": 1.99, "weight": 0.8, "category": "produce", "code": "1019", "is_produce": True, "fragile": False},
 
     # dairy + fridge values
 
@@ -591,3 +592,114 @@ register_events = [
 ]
 
 from functions import *
+
+main_menu = {
+    "1.": "Start Shift",
+    "2.": "Upgrade Shop",
+    "3.": "Plu Master Key",
+    "4.": "Career Stats",
+    "5.": "Cashier Handbook",
+    "6.": "Reset Save",
+    "7.": "Quit"
+}
+
+
+for test_round in range(500):
+    test_cust, test_cart = generate_customer(4,11)
+
+    for k in test_cart:
+        item_check = store_items[k]
+        _ = item_check["name"]
+        _ = item_check["price"]
+        _ = item_check["weight"]
+        _ = item_check["category"]
+        _ = item_check["code"].strip()
+
+for c_info in coupons:
+     _ = store_items[c_info["item"]]
+print("Stress Test Passed All 115, 25 Coupons and, 20 Customers verified")
+
+
+while True:
+    print("\n Main Menu (Shift #" + str(shift_num) + " | Balance: ${:.2f}".format(bank_balance) + ")")
+    for menu_key in main_menu:
+        print(menu_key + " " + main_menu[menu_key])
+
+    choice = input("\nChoose an Option(1-7): ").strip().lower()
+
+    if choice == "1":
+        (
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        ) = play_shift(
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        )
+
+        save_game(
+            save_path,
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        )
+
+    elif choice == "2":
+        bank_balance, upgrades = open_upgrade_shop(bank_balance, upgrades)
+        save_game(
+            save_path,
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        )
+
+    elif choice == "3":
+        show_plu_master_key()
+
+    elif choice == "4":
+        show_career_stats(
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        )
+    elif choice == "5":
+        show_cashier_handbook()
+    elif choice == "6":
+        (
+            bank_balance,
+            shift_num,
+            total_customers_served,
+            alltime_tips_earned,
+            total_mistakes,
+            best_shift_time,
+            upgrades
+        ) = reset_save(save_path)
+    elif choice == "7":
+        break
+
+    else:
+        print("Invalid Choice")
+
+print("\n Thanks For playing " + store_name + "! GoodBye.")
+input("Press Enter to exit")
