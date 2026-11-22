@@ -657,6 +657,151 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
     print("_" * recipt_width)
     print("")
 
-    
+    method = random.choice(["card", "cash"])
+    if method == "card":
+        print("Customer Pays by card Approved")
+        return 0, 0.00
+
+    handed = 0
+    for bill in bill_denominations:
+        if bill >= final_total:
+            handed = bill
+            break
+
+    if handed == 0:
+        handed = 100
+        while handed < final_total:
+            handed = handed + 100
+
+    handed = round(float(handed), 2)
+    change = round(handed - final_total, 2)
+
+    print("Customer Hands you ${:.2f}".format(handed) + "in cash")
+
+    if change <= keep_change_limit:
+        print("Customer Says Keep the Change")
+        return 0, change
+
+    if "auto_calc" in upgrades:
+        print("Automatic Change Dispenser Gives Exact Change: ${:.2f}".format(change))
+        return 0, 0.00
 
 
+    print("Total is ${:.2f}".format(final_total) + " | Cash Given is ${:.2f}".format(handed))
+    typed = input("Enter exact Change due: $").strip().lower()
+
+    try:
+         typed_val = float(typed)
+         if round(typed_val, 2) == change:
+             print("Exact Change Given")
+             return 0.00
+         else:
+             print("Wrong Change, The Right Amount was ${:.2f}".format(change))
+             return 1, 0.0
+    except:
+        print("Invalid Input The right amount was ${:.2f}".format(change))
+        return 1, 0.0
+
+# function 13 - run_bagging_stage
+
+
+
+
+# function 14 - calculate_shift_grade
+
+def calculate_shift_grade(shift_mistakes, elapsed_time):
+    if shift_mistakes == 0 and elapsed_time <= 60.0:
+        return "S", 10.00
+    elif shift_mistakes == 0:
+        return "A", 5.00
+    elif shift_mistakes <= 2:
+        return "B", 2.00
+    elif shift_mistakes <= 4:
+        return "C", 0.0
+    else:
+        return "F", 0.00
+
+
+#Function 15 - play_shift
+
+def play_shift(
+        bank_balance ,
+        shift_num,
+        total_customers_served,
+        alltime_tips_earned,
+        total_mistakes,
+        best_shift_time,
+        upgrades
+):
+    customer_count, min_items,max_items, coupons_count, event_chance = get_shift_settings(shift_num)
+
+    print("Starting Shift #"+ str(shift_num))
+
+    print("Customers Today: " + str(customer_count))
+    print("Items per cart: " + str(min_items) + " - " + str(max_items))
+    print("Coupons / Customer: "+ str(coupon_count))
+    print("Event_Chance : "+ str(event_chance * 100) + "%")
+
+
+    shift_mistakes = 0
+    time_penalties = 0
+    shift_tips = 0.0
+    start = time.time()
+
+    for x in range(customer_count):
+        customer, cart_keys = generate_customer(min_items, max_items)
+        print("Customer " + str( x +1 ) + " of "+ str(customer_count) + ": " + customer["name"])
+
+        print("\"" + customer["greeting"] + "\"")
+
+        scan_penalties = run_scanning_stage(cart_keys_upgrades, event_chance)
+        time_penalties += scan_penalties
+
+        total_discount, coupon_mistakes = run_coupon_stage(cart_keys, shift_num,coupons_count, customer)
+        pay_mistakes, change_tip = run_payment_stage(cart_keys, total_discount, upgrades)
+        bag_mistakes, frozen_bonus_earned = run_bagging_stage(cart_keys, upgrades, customer)
+
+        customer_mistakes = coupon_mistakes + pay_mistakes + bag_mistake
+        shift_mistakes += customer_mistakes
+        total_customers_served += 1
+
+        if customer_mistakes == 0:
+            print(customer["name"] + ": \"" + customer["happy_outro"] + "\"")
+            customer_tip = round((change_tip + frozen_bonus_earned) * customer["tipmult"], 2)
+            shift_tips = round((shift_tips + customer_tip , 2))
+            print("Customer Tip Earned ${:.2f}".format(customer_tip))
+
+        else:
+            print(customer["name"] + ": \"" + customer["angry_outro"] + "\"")
+            print("Customer Mistakes: " + str(customer_mistakes) + "NO Tips Earned")
+            if customer["name"] == "Rordan Gamsey":
+                shift_mistake += 1
+                print("Rordan Ramsey Reported You!, (+1 Extra Mistake)")
+
+
+    elapsed = round((time.time()-start) + time_penalties,2)
+    if "express_belt" in upgrades:
+            elapsed = round(elapsed - express_time_belt_reduction, 2)
+            if elapsed < 0:
+                elapsed = 0.0
+    letter, grade_bonus = calculate_shift_grade(shift_mistakes, elapsed)
+
+    pay = round(base_shift_tip - (shift_mistakes * mistake_deduction) + shift_tips + grade_bonus, 2)
+    if pay < 0:
+       pay = 0.0
+
+    bank_balance = round(bank_balance + pay, 2)
+    alltime_tips_earned = round(alltime_tips_earned + pay, 2)
+    total_mistakes += shift_mistakes
+
+    if elapsed < best_shift_time:
+        best_shift_time = elapsed
+
+    shift_num += 1
+
+    print("Total Shift Time: {:.2f}".format(elapsed)+ "s")
+    print("Total Mistakes: " + str(shift_mistakes))
+    print("Shift Grade: " + letter + " (Bonus: ${:.2f}".format(grade_bonus) + ")")
+    print("Customer Tips: ${:.2f}".format(shift_tips))
+    print("Total Shift Pay: ${:.2f".format(pay))
+    print("New Bank Balance: ${:.2f}".format(bank_balance))
