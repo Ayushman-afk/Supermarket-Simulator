@@ -862,14 +862,42 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
             frozen_tip_bonus = round(frozen_tip_bonus + bonus_per_bag, 2)
 
         if len(problems) == 0:
-            print("Bag " + str(b + 1) )
+            print("Bag " + str(b + 1) + " (" + str(bag_weight) + " lbs): Ok")
+        else:
+            print("Bag " + str(b + 1) + " (" + str(bag_weight) + " lbs): problem")
+            for p in problems:
+                print("  -->" + p)
 
+    if customer != None and customer["name"] == "Bill":
+        paired_properly = False
+        for bag in bags:
+            found_frozen = False
+            found_produce = False
+            for k in bag:
+                if store_items[k]["category"] == "frozen":
+                    found_frozen = True
+                if store_items[k]["category"] == "produce":
+                    found_produce = True
+            if found_frozen == True and found_produce == True:
+                 paired_properly = True
+        if paired_properly == False:
+            stage_mistake += 1
+            print("Special Request Missed: Bill Aksed to put his frozen items with his produce (+1 Mistake)")
 
+    if customer != None and customer["name"] == "Freezer Man":
+       bags_with_frozen = 0
+       for bag in bags:
+           has_f = False
+           for k in bag:
+               if store_items[k]["category"] == "frozen":
+                   has_f = True
+           if has_f == True:
+               bags_with_frozen += 1
+       if bags_with_frozen == 1:
+           frozen_tip_bonus = round(frozen_tip_bonus + 2.00, 2)
+           print("Freezer Man Bonus: All Frozen Meals packed together, (+$2.00 Tip)")
 
-
-
-
-
+    return stage_mistakes, round(frozen_tip_bonus, 2)
 
 # function 14 - calculate_shift_grade
 
@@ -884,7 +912,6 @@ def calculate_shift_grade(shift_mistakes, elapsed_time):
         return "C", 0.0
     else:
         return "F", 0.00
-
 
 #Function 15 - play_shift
 

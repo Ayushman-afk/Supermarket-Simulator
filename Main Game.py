@@ -73,6 +73,25 @@ store_items = {
 
     "bellpeppers" : {"name": "Bell Peppers", "price": 9.79, "weight": 1.4, "category": "produce", "code": "1460", "is_produce": True, "fragile": True},
 
+    "mango" : {"name": "Organic Mangoes", "price":  8.79, "weight": 3.0, "category": "produce", "code": "1231", "is_produce": True, "fragile": False},
+
+    "plums": {"name": "Black Plums", "price": 7.79, "weight": 4.5, "category": "produce", "code": "1253", "is_produce": True, "fragile": False},
+
+    "lettuce": {"name": "Romaine Lettuce", "price": 4.59, "weight": 1.2, "category": "produce", "code": "1000", "is_produce": True, "fragile": True},
+
+    "limes": {"name": "Key Limes", "price": 2.99, "weight": 1.2, "category": "produce", "code": "1423", "is_produce": True, "fragile": False} ,
+
+    "raspberries": {"name": "Red raspberries", "price": 3.49, "weight": 0.9,"category": "produce", "code": "1111", "is_produce": True, "fragile": False},
+
+    "lemons": {"name": "Lemons (bag)", "price": 3.49, "weight": 1.2,"category": "produce", "code": "1200", "is_produce": True, "fragile": False},
+
+    "cucumbers": {"name": "English Cucumbers", "price": 1.79, "weight": 0.7, "category": "produce", "code": "1345", "is_produce": True, "fragile": True},
+
+    "zucchini": {"name": "Green Zucchini", "price": 2.29, "weight": 0.2, "category": "produce", "code": "1001", "is_produce": True, "fragile": True},
+
+    "spinach": {"name": "Baby Spinach", "price": 3.99, "category": "produce", "code": "1111", "is_produce": True, "fragile": True},
+
+
     # dairy + fridge values
 
     "milk" : {"name": "Organic Milk", "price": 5.99, "weight": 3.3, "category": "dairy", "code": "2341", "": True, "fragile": False},
