@@ -1,7 +1,7 @@
 import time
 import random
 
-#- Pregame defined variables. (total - 149) (80 items of produce) (25 coupons) (20 Customers) (8 register events) (6 upgrades)
+#- Pregame defined variables. (total - 224) (115 items of produce) (40 coupons) (20 Customers) (8 register events) (6 upgrades)
 
 save_file_name = "SuperSimSave.txt"
 shift_num = 1
@@ -89,7 +89,57 @@ store_items = {
 
     "zucchini": {"name": "Green Zucchini", "price": 2.29, "weight": 0.2, "category": "produce", "code": "1001", "is_produce": True, "fragile": True},
 
-    "spinach": {"name": "Baby Spinach", "price": 3.99, "category": "produce", "code": "1111", "is_produce": True, "fragile": True},
+    "spinach": {"name": "Baby Spinach", "price": 3.99, "weight": 1.3, "category": "produce", "code": "1111", "is_produce": True, "fragile": True},
+
+    "blueberries": {"name": "Fresh Blueberries", "price": 2.29, "weight": 0.3, "category": "produce", "code": "1099", "is_produce": True, "fragile": False},
+
+    "greengrapes": {"name": "Green Seedless Grapes", "price": 4.79, "weight": 1.3, "category": "produce", "code": "1938", "is_produce": True, "fragile": False},
+
+    "redgrapes": {"name": "Red Seedless Grapes", "price": 4.89, "weight": 2.1, "category": "produce", "code": "1324", "is_produce": True, "fragile": False},
+
+    "watermelon": {"name": "Seedless Watermelom", "price": 8.99, "weight": 11.5, "category": "produce", "code": "1999", "is_produce": True, "fragile": False},
+
+    "pineapple": {"name": "Golden Pineapple", "price": 4.49, "weight": 3.4, "category": "produce", "code": "1222", "is_produce": True, "fragile": False},
+
+    "peaches": {"name": "Yellow Peaches", "price": 4.29, "weight": 4.5, "category": "produce", "code": "1122", "is_produce": True, "fragile": False},
+
+    "pears": {"name": "Bartlett Pears", "price": 3.79, "weight": 1.9, "category": "produce", "code": "1100", "is_produce": True, "fragile": False},
+
+    "celery": {"name": "Celery Stalks", "price": 2.49, "weight": 1.6, "category": "produce", "code": "1900", "is_produce": True, "fragile": False},
+
+    "mushrooms": {"name": "Sliced Mushrooms", "price": 3.29, "weight": 0.7, "category": "produce", "code": "1290", "is_produce": True, "fragile": False},
+
+    "jalapenos": {"name": "Jalapeno Peppers", "price": 1.89, "weight": 0.9, "category": "produce", "code": "1298", "is_produce": True, "fragile": False},
+
+    "ginger": {"name": "Fresh Ginger Root", "price": 2.69, "weight": 0.5, "category": "produce", "code": " 1992", "is_produce": True, "fragile": False},
+
+    "sweetpotatoes": {"name": "Sweet Potatoes", "price": 5.49, "weight": 4.5, "category": "produce", "code": "1090", "is_produce": True, "fragile": False},
+
+    "asparagus": {"name": "Green Asparagus", "price": 4.59, "weight": 1.0, "category": "produce", "code": "1911", "is_produce": True, "fragile": False},
+
+    "cauliflower": {"name": "Cauliflower Head", "price": 2.99, "weight": 1.7, "category": "produce", "code": "1005", "is_produce": True, "fragile": False},
+
+    "cabbage": {"name": "Green Cabbage", "price": 2.79 ,"weight": 3.8, "category": "produce", "code": "1004", "is_produce": True, "fragile": False},
+
+    "greenbeans": {"name": "Frech Green Beans", "price": 3.49, "weight": 1.0, "category": "produce", "code": "1009", "is_produce": True, "fragile": True},
+
+    "cornonthecob": {"name": "Sweet Corn (4ct)", "price": 3.99, "weight": 2.5, "category": "produce", "code": "1010", "is_produce": True, "fragile": False},
+
+    "cherries": {"name": "Dark Sweet Cherries", "price": 6.99, "weight": 1.2, "category": "produce", "code": "1011", "is_produce": True, "fragile": False},
+
+    "kiwis": {"name": "Kiwi Fruit (4ct)", "price": 3.79, "weight": 0.9, "category": "produce", "code": "1012", "is_produce": True, "fragile": False},
+
+    "oranges": {"name": "Navel Oranges", "price": 4.99, "weight": 3.5, "category": "produce", "code": "1013", "is_produce": True, "fragile": False},
+
+    "grapefruit": {"name": "Ruby Red Grapefruit", "price": 2.49, "weight": 1.3, "category": "produce", "code": "1014", "is_produce": True, "fragile": False},
+
+    "cantaloupe" : {"name": "Ripe Cantaloupe", "price": 3.99, "weight": 4.8, "category": "produce", "code": "1015", "is_produce": True, "fragile": False},
+
+    "honeydew" : {"name": "HoneyDew Melon", "price": 4.49, "weight": 5.2, "category": "produce", "code": "1016", "is_produce": True, "fragile": False},
+
+    
+
+
 
 
     # dairy + fridge values
