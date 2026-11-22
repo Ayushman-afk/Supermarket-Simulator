@@ -150,7 +150,7 @@ def reset_save(filepath):
     print("This Will permanently erase your bank balance,")
     print("shift progress, career stats, and upgrades.")
 
-    answer = intput("\nType 'yes' to erase everything and reset: ").strip().lower()
+    answer = input("\nType 'yes' to erase everything and reset: ").strip().lower()
 
     if answer == "yes":
         double_check = input("Type 'confirm' to complete the reset: ").strip().lower()
@@ -193,12 +193,12 @@ def show_career_stats(
     else:
         rank_title = "Super Mart Store Legend"
 
-    if total_customer_served > 0:
+    if total_customers_served > 0:
         mistakes_per_customer = round(total_mistakes / total_customer_served, 2)
     else:
         mistakes_per_customer = 0.00
 
-    if completed_shits > 0:
+    if completed_shifts > 0:
         average_shift_pay = round(alltime_tips_earned / completed_shifts, 2)
     else:
         average_shift_pay = 0.00
@@ -248,17 +248,17 @@ def show_plu_master_key():
             produce_keys.append(key)
             padded_name = item["name"].ljust(20)
             clean_code = item["code"].strip().ljust(8)
-            price_str = ("$ {:.2f}".format(item["price"])).ljust(6)
+            price_str = ("${:.2f}".format(item["price"])).ljust(6)
 
             if item.get("fragile") == True:
                 note_str = "FRAGILE"
             else:
-                noter_str = "Sturdy (" + str(item["weight"]) + " lbs"
+                note_str = "Sturdy (" + str(item["weight"]) + " lbs )"
 
             print(padded_name + " | " + clean_code + " | " + price_str + " | " + note_str)
 
 
-        print("Total Produce Items: " + str(len(produce_keys)))
+        print("\nTotal Produce Items: " + str(len(produce_keys)))
 
         if len(produce) > 0:
             practice_choice = input("\nType 'quiz' to practice Plu Codes (or press enter to return): ").strip().lower()
@@ -281,16 +281,17 @@ def show_plu_master_key():
 # function 7 - open Upgrade Shop
 
 def open_upgrade_shop(bank_balance, upgrades):
+    upgrade_keys = list(upgrades_catalog.keys())
     while True:
         print("Super Mart Upgrade Shop")
         print("Available Bank Balance: ${}".format(bank_balance))
-        print("Upgrades Owned: "+ str(len(upgrade)) + "/" + str(len(upgrade_keys)))
+        print("Upgrades Owned: "+ str(len(upgrades)) + "/" + str(len(upgrade_keys)))
 
         index = 0
 
         while index < len(upgrade_keys):
             key = upgrade_keys[index]
-            item_info = upgrade_catalog[key]
+            item_info = upgrades_catalog[key]
             number_label = str(index + 1) + ". "
             padded_name = item_info["name"].ljust(30)
             item_cost = item_info["cost"]
@@ -307,7 +308,7 @@ def open_upgrade_shop(bank_balance, upgrades):
         print("0. Leave Upgrade Shop")
         choice = input("\n Enter Upgrade number to buy (or 0 to leave): ").strip().lower()
 
-        if choice.isdigit == True:
+        if choice.isdigit():
             choice_num = int(choice)
 
             if choice_num == 0:
@@ -316,9 +317,9 @@ def open_upgrade_shop(bank_balance, upgrades):
 
             elif choice_num >= 1 and choice_num <= len(upgrade_keys):
                 selected_key = upgrade_keys[choice_num - 1]
-                selected_upgrade = upgrade_catalog[selected_key]
+                selected_upgrade = upgrades_catalog[selected_key]
                 selected_name = selected_upgrade["name"]
-                selected_cost = select_upgrade["cost"]
+                selected_cost = selected_upgrade["cost"]
 
                 if selected_key in upgrades:
                     print("Your Already Own: "+ selected_name)
@@ -329,7 +330,7 @@ def open_upgrade_shop(bank_balance, upgrades):
                     new_balance = round(bank_balance - selected_cost, 2)
                     print("\nPurchase "+ selected_name + "for ${:.2f}".format(selected_cost))
                     print("Remaining Balance will be: ${:.2f}".format(new_balance))
-                    confirm = input("Type 'yes' to confirm purchaseL ").strip().lower()
+                    confirm = input("Type 'yes' to confirm purchase: ").strip().lower()
 
                     if confirm == "yes":
                          bank_balance = new_balance
@@ -387,71 +388,72 @@ def get_shift_settings(shift_num):
 #function 9 - generate customer(min_items, max_items)
 
 def generate_customer(min_items, max_items):
-     customer = random.choice(customers)
-     cart_size = random.randint(min_items, max_items)
-     all_keys = list(store_items.keys())
-     cart_keys = []
+    customer = random.choice(customers)
+    cart_size = random.randint(min_items, max_items)
+    all_keys = list(store_items.keys())
+    cart_keys = []
 
-     spelling_map = {
-         "muffin": "muffins",
-         "banana": "bananas",
-         "cleaningwipes": "wipes",
-         "bellpepper": "bellpeppers",
-         "porkchops": "pork",
-         "bread": "whitebread",
-         "tortillachips": "tortillachips"
-     }
+    spelling_map = {
+        "muffin": "muffins",
+        "banana": "bananas",
+        "cleaningwipes": "wipes",
+        "bellpepper": "bellpeppers",
+        "porkchops": "pork",
+        "bread": "whitebread",
+        "tortillachips": "tortillachips"
+    }
 
-     safe_preferred = []
-     for raw_key in customer["preferred_items"]:
-         if raw_key in store_items:
+    safe_preferred = []
+    for raw_key in customer["preferred_items"]:
+        if raw_key in store_items:
             safe_preferred.append(raw_key)
-         elif raw_key in spelling_map:
+        elif raw_key in spelling_map:
             mapped_key = spelling_map[raw_key]
             if mapped_key in store_items:
                 safe_preferred.append(mapped_key)
 
+    count = 0
+    while count < cart_size:
+        roll = random.random()
+        if roll < 0.6 and len(safe_preferred) > 0:
+            picked_key = random.choice(safe_preferred)
+        else:
+            picked_key = random.choice(all_keys)
 
-     count = 0
-     while count < cart_size:
-         roll = random.random()
-         if roll < 0.6 and len(safe_preferred) > 0:
-             picked_key  = random.choice(safe_preferred)
-     else:
-         picked_key = random.choice(all_keys)
+        cart_keys.append(picked_key)
+        count += 1
 
+    if customer["name"] == "Bill":
+        has_frozen = False
+        has_produce = False
+        for k in cart_keys:
+            if store_items[k]["category"] == "frozen":
+                has_frozen = True
+            if store_items[k]["category"] == "produce":
+                has_produce = True
+        if has_frozen == False:
+            cart_keys[0] = "icecream"
+        if has_produce == False and len(cart_keys) > 1:
+            cart_keys[1] = "avocados"
 
-     cart_keys.append(picked_key)
-     count += 1
+    if customer["name"] == "Freezer Man":
+        frozen_total = 0
+        for k in cart_keys:
+            if store_items[k]["category"] == "frozen":
+                frozen_total += 1
+        if frozen_total < 2 and len(cart_keys) >= 2:
+            cart_keys[0] = "icecream"
+            cart_keys[1] = "waffles"
 
-     if customer["name"] == "Bill":
-         has_frozen = False
-         has_produce = False
-         for k in cart_keys:
-             if store_items[k]["category"] == "frozen":
-                 has_frozen = True
-             if store_items[k]["category"] == "produce":
-                 has_produce = True
-         if has_frozen == False:
-             cart_keys[0] = "icecream"
-         if has_produce == False and len(cart_keys) > 1:
-             cart_keys[1] = "avocados"
-     if customer["name"] == "Freezer Man":
-         frozen_total = 0
-         for k in cart_keys:
-             if store_items[k]["category"] == "frozen":
-                 frozen_total += 1
-         if frozen_total < 2 and len(cart_keys) >= 2:
-             cart_keys[0] = "icecream"
-             cart_keys[1] = "waffles"
+    if customer["name"] == "College Kid":
+        if "energydrink" not in cart_keys:
+            cart_keys[0] = "energydrink"
 
-     if customer["name"] == "College Kid":
-         if "energydrink" not in cart_keys:
-             cart_keys[0] = "energydrink"
-
-     return customer, cart_keys
+    return customer, cart_keys
 
 #function 10 - run_scanning_stage
+
+note_str = ""
 
 def run_scanning_stage(cart_keys, upgrades, event_chance):
     time_penalties = 0
@@ -548,9 +550,10 @@ def run_coupon_stage(cart_keys, shift_num, coupons_per_customer,customer = None)
     print("Cart Summary: ")
     listed_keys = []
     for x in cart_keys:
-        listed_keys.append(x)
-        qty = cart.keys.count(x)
-        print("  - " + store_items[x]["name"] + " (x" + str(qty) + ")")
+        if x not in listed_keys:
+            listed_keys.append(x)
+            qty = cart_keys.count(x)
+            print("  - " + store_items[x]["name"] + " (x" + str(qty) + ")")
 
 
     for x in range(total_coupons):
@@ -561,7 +564,7 @@ def run_coupon_stage(cart_keys, shift_num, coupons_per_customer,customer = None)
         c_max_shift = coupon["max_shift"]
         c_discount = coupon["discount"]
 
-        print("\nCoupon #" + str(x + 2) + ":" + c_text)
+        print("\nCoupon #" + str(x + 1) + ": " + c_text)
 
         is_valid = True
         reasons = []
@@ -572,7 +575,7 @@ def run_coupon_stage(cart_keys, shift_num, coupons_per_customer,customer = None)
 
         if cart_keys.count(c_item) < c_min_qty:
             is_valid = False
-            reasons.append("Cart Only Has " + str(cart_keys.count(c_item)) + ", But coupon requires" + str(c_min_qty) + ".")
+            reasons.append("Cart Only Has " + str(cart_keys.count(c_item)) + ", But coupon requires " + str(c_min_qty) + ".")
 
         if shift_num > c_max_shift:
             is_valid = False
@@ -590,17 +593,17 @@ def run_coupon_stage(cart_keys, shift_num, coupons_per_customer,customer = None)
                 total_discount = round(total_discount + c_discount, 2)
                 print("Accepted Valid Coupon, Discount -${:.2f}".format(c_discount))
             else:
-                stage_mistakes += 1
+                stage_mistakes+= 1
                 print("Mistake, That Coupon Was Not Valid")
-                for x in reasons:
+                for r in reasons:
                     print("  *" + r)
         else:
             if is_valid == True:
                 stage_mistakes += 1
                 print("Mistake That Coupon was Valid and Should've Been Accepted")
             else:
-                 print("Good Catch, Rejected Valid Coupon")
-                 for x in reasons:
+                 print("Good Catch, Rejected Invalid Coupon")
+                 for r in reasons:
                      print("  *" + r)
 
     return round(total_discount, 2), stage_mistakes
@@ -629,12 +632,12 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
     final_total = round(after_coupons + tax, 2)
 
     print("")
-    print(store.name.center(recipt_width))
+    print(store_name.center(recipt_width))
     print("-" * recipt_width)
 
     for key in cart_keys:
-        raw_name = store_items["key"]["name"]
-        price_str = "${:.2f}".format(store_items["key"]["price"])
+        raw_name = store_items[key]["name"]
+        price_str = "${:.2f}".format(store_items[key]["price"])
         max_name_width = recipt_width - len(price_str) - 1
         trimmed_name = raw_name[:max_name_width]
         left_width = recipt_width - len(price_str)
@@ -647,13 +650,13 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
     print("Subtotal".ljust(recipt_width - len(sub_str)) + sub_str)
 
     disc_str = "-${:.2f}".format(applied_discount)
-    print("Coupon Savings".ljust(recipt_width - len(disc-str)) + disc_str)
+    print("Coupon Savings".ljust(recipt_width - len(disc_str)) + disc_str)
 
     tax_str = "${:.2f}".format(tax)
     print("Tax".ljust(recipt_width - len(tax_str)) + tax_str)
 
     tot_str = "${:.2f}".format(final_total)
-    print("Total".ljust(recipt_width - len(tot-str)) + tot_str)
+    print("Total".ljust(recipt_width - len(tot_str)) + tot_str)
     print("_" * recipt_width)
     print("")
 
@@ -930,7 +933,7 @@ def play_shift(
 
     print("Customers Today: " + str(customer_count))
     print("Items per cart: " + str(min_items) + " - " + str(max_items))
-    print("Coupons / Customer: "+ str(coupon_count))
+    print("Coupons  / Customer: "+ str(coupons_count))
     print("Event_Chance : "+ str(event_chance * 100) + "%")
 
 
@@ -945,7 +948,7 @@ def play_shift(
 
         print("\"" + customer["greeting"] + "\"")
 
-        scan_penalties = run_scanning_stage(cart_keys_upgrades, event_chance)
+        scan_penalties = run_scanning_stage(cart_keys,upgrades, event_chance)
         time_penalties += scan_penalties
 
         total_discount, coupon_mistakes = run_coupon_stage(cart_keys, shift_num,coupons_count, customer)

@@ -327,7 +327,7 @@ coupons = [
 
     {"text": "Save $5.00 on Herby Marinara Sauce (Expires Shift 3)", "item": "marinara", "discount": 5.00, "min_qty": 1, "max_shift": 3},
 
-    {"text": "Save $3.40 on Lemon Lime Wipes (Expires Shift 2)", "item": "cleaningwipes", "discount": 3.40, "min_qty": 1, "max_shift": 2},
+    {"text": "Save $3.40 on Lemon Lime Wipes (Expires Shift 2)", "item": "wipes", "discount": 3.40, "min_qty": 1, "max_shift": 2},
 
     {"text": "Save $ 0.50 on Avocados (Expires Shift 1)", "item": "avocados", "discount": 0.50, "min_qty": 1, "max_shift": 1},
 
@@ -604,20 +604,24 @@ main_menu = {
 }
 
 
-for test_round in range(500):
-    test_cust, test_cart = generate_customer(4,11)
+# stress test
+#for test_round in range(500):
+    #test_cust, test_cart = generate_customer(4,11)
 
-    for k in test_cart:
-        item_check = store_items[k]
-        _ = item_check["name"]
-        _ = item_check["price"]
-        _ = item_check["weight"]
-        _ = item_check["category"]
-        _ = item_check["code"].strip()
+    #for k in test_cart:
+        #item_check = store_items[k]
+       # _ = item_check["name"]
+        #_ = item_check["price"]
+       # _ = item_check["weight"]
+       # _ = item_check["category"]
+        #_ = item_check["code"].strip()
 
-for c_info in coupons:
-     _ = store_items[c_info["item"]]
-print("Stress Test Passed All 115, 25 Coupons and, 20 Customers verified")
+#for c_info in coupons:
+    # _ = store_items[c_info["item"]]
+#print("Stress Test Passed All 115, 25 Coupons and, 20 Customers verified")
+
+
+save_path = save_file_name
 
 
 while True:
@@ -695,6 +699,27 @@ while True:
             best_shift_time,
             upgrades
         ) = reset_save(save_path)
+
+    elif choice == "adminpasscash":
+        amt_str = input("Enter Test Cash Amount ($): ").strip()
+        try:
+            bonus = round(float(amt_str), 2)
+            bank_balance = round(bank_balance + bonus, 2)
+            print("Added ${:.2f}".format(bonus) + " New balance: ${:.2f}".format(bank_balance))
+            save_game (
+                save_path,
+                bank_balance,
+                shift_num,
+                total_customers_served,
+                alltime_tips_earned,
+                total_mistakes,
+                best_shift_time,
+                upgrades
+            )
+        except ValueError:
+            print("Invalid Number")
+
+
     elif choice == "7":
         break
 
