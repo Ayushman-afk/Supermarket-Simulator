@@ -704,6 +704,47 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
 
 # function 13 - run_bagging_stage
 
+def run_bagging_stage(cart_keys, upgrades, customer=None):
+    print("Stage 4: Grocery Bagging")
+
+    if heavy_bags in upgrades:
+         max_weight = upgraded_max_bag_weight
+    else:
+        max_weight = standard_max_bag_weight
+
+    if insulated_bags in upgrades:
+        bonus_per_bag = upgradad_frozen_bonus
+    else:
+        bonus_per_bag = frozen_bonus
+
+    if customer != None:
+        print("Customer Note \""+ customer["greeting"]+"\"")
+
+    bags = [[]]
+    total_items = len(cart_keys)
+
+    item_num = 0
+    for key in cart_keys:
+        item_num += 1
+        item = store_items[key]
+        item_name = item["name"]
+        item_weight = item["weight"]
+        item_cat = item["category"]
+
+        if item.get("fragile") == True:
+            fragile_tag = "FRAGILE"
+        else:
+            fragile_tag = "sturdy"
+
+        while True:
+            print("Item "+ str(item_num)+ "/" + str(total_items) + ":" + item_name)
+            print("Weight: "+ str(item_weight) + " lbs | Category: " + item_cat + " | " + fragile_tag)
+            print("Current Bags: " + str(len(bags)) + " (Max bags: " + str(max_bags_per_order) + ", Max Weight: " + str(max_weight) + " lbs")
+            cmd = input("Enter Bag Number, 'new', or 'inspect' > ").strip().lower()
+
+            if cmd.isdigit() == True:
+                bag_num = int(cmd)
+                if bag_num >= 1 and bag_num
 
 
 
