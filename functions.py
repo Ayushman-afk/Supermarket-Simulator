@@ -71,12 +71,12 @@ def load_game(filepath):
 
     if file_found == False:
         default_upgrades = []
-        save_game(filepath, 0.00, 1, 0, 0.00, 0, 999.99)
+        save_game(filepath, 0.00, 1, 0, 0.00, 0, 999.99, default_upgrades)
         return 0.00, 1, 0, 0.00, 0, 999.99, []
 
     try:
         file_reader = open(filepath, "r")
-        lines = file_reader.readline()
+        lines = file_reader.readlines()
         file_reader.close()
 
         if len(lines) < 7:
@@ -194,7 +194,7 @@ def show_career_stats(
         rank_title = "Super Mart Store Legend"
 
     if total_customers_served > 0:
-        mistakes_per_customer = round(total_mistakes / total_customer_served, 2)
+        mistakes_per_customer = round(total_mistakes / total_customers_served, 2)
     else:
         mistakes_per_customer = 0.00
 
@@ -223,12 +223,12 @@ def show_career_stats(
     if len(upgrades) == 0:
         print("Owned Upgrades = None")
     else:
-        print("Owned Upgrades (" + str(len(upgrades)) + " of "+ str(len(upgrade_catalog) + "):"))
+        print("Owned Upgrades (" + str(len(upgrades)) + " of "+ str(len(upgrades_catalog)) + "):")
 
-        for up_key in upgrade:
-            if up_key in upgrade_catalog:
-                up_name = upgrade_catalog[up_key]["name"]
-                up_desc = upgrade_catalog[up_key]["description"]
+        for up_key in upgrades:
+            if up_key in upgrades_catalog:
+                up_name = upgrades_catalog[up_key]["name"]
+                up_desc = upgrades_catalog[up_key]["description"]
                 print("  *" + up_name + " - " + up_desc)
             else:
                 print("  *" + up_key)
@@ -237,45 +237,103 @@ def show_career_stats(
 #function 6 - plu master key
 
 def show_plu_master_key():
-    print("Plu Master Key")
-    print("Produce Name       | Plu Code | Price | Notes|")
+    while True:
+        print("\nSuper Mart Catalog & PLU Master Key")
+        print("1. Produce (PLU Codes)")
+        print("2. Dairy and Refrigerated")
+        print("3. Bakery")
+        print("4. Raw Meat and refrigerated")
+        print("5. Frozen Foods")
+        print("6. Canned & Pantry")
+        print("7. Snacks & Beverages")
+        print("8. Household & Cleaning")
+        print("9. All Store Items")
+        print("0. Return to Main Menu")
 
-    produce_keys = []
+        section_choice = input("\n Choose section to view (0-9): ").strip().lower()
 
-    for key in store_items:
-        item = store_items[key]
-        if item.get("is_produce") == True:
-            produce_keys.append(key)
-            padded_name = item["name"].ljust(20)
-            clean_code = item["code"].strip().ljust(8)
-            price_str = ("${:.2f}".format(item["price"])).ljust(6)
+        if section_choice == "0":
+            break
+        elif section_choice == "1":
+            section_title = "Produce (PLU Codes)"
+            allowed_categories = ["produce"]
+        elif section_choice == "2":
+            section_title = "Dairy & Refrigerated"
+            allowed_categories = ["dairy", "refrigerated"]
+        elif section_choice == "3":
+            section_title = "Bakery"
+            allowed_categories = ["bakery"]
+        elif section_choice == "4":
+            section_title = "Raw Meat & Seafood"
+            allowed_categories = ["rawmeat"]
+        elif section_choice == "5":
+            section_title = "Frozen Foods"
+            allowed_categories = ["frozen"]
+        elif section_choice == "6":
+            section_title = "Canned & Pantry"
+            allowed_categories = ["canned"]
+        elif section_choice == "7":
+            section_title = "Snack & Beverage"
+            allowed_categories = ["snack"]
+        elif section_choice == "8":
+            section_title = "Household & Cleaning"
+            allowed_categories = ["household"]
+        elif section_choice == "9":
+            section_title = "All Store Items"
+            allowed_categories = "all"
+        else:
+            print("Invalid Choice. Please Choose from 0 to 9.")
+            continue
 
-            if item.get("fragile") == True:
-                note_str = "FRAGILE"
-            else:
-                note_str = "Sturdy (" + str(item["weight"]) + " lbs )"
+        print(section_title)
+        print("Item name". ljust(32) + " | " + "Code".ljust(6) + " | " + "Price".ljust(7) + " | " + "Category".ljust(12) + " | Notes")
+        print("-" * 82)
 
-            print(padded_name + " | " + clean_code + " | " + price_str + " | " + note_str)
+        shown_count = 0
+        produce_keys = []
 
+        for key in store_items:
+            item = store_items[key]
+            item_cat = item["category"]
 
-        print("\nTotal Produce Items: " + str(len(produce_keys)))
+            if item.get("is_produce") == True:
+                produce_keys.append(key)
 
-        if len(produce) > 0:
-            practice_choice = input("\nType 'quiz' to practice Plu Codes (or press enter to return): ").strip().lower()
+            if allowed_categories == "all" or item_cat in allowed_categories:
+                shown_count += 1
+                padded_name = item["name"][:32].ljust(32)
+                clean_code = item["code"].strip().ljust(6)
+                price_str = ("${:.2f}".format(item["price"])).ljust(7)
+                cat_str = item_cat.ljust(12)
+
+                if item.get("fragile") == True:
+                    note_str = "FRAGILE"
+                else:
+                    note_str = "Sturdy (" + str(item["weight"]) + " lbs)"
+
+                print(padded_name + " | " + clean_code + " | " + price_str + " | " + cat_str + " | " + note_str)
+
+        print("\n Total Items in " + section_title + ": " + str(shown_count))
+
+        if (allowed_categories == "all" or "produce" in allowed_categories) and len(produce_keys) > 0:
+            practice_choice = input("\nType 'quiz' to practice PLU Codes (or press enter to go back): ").strip().lower()
             if practice_choice == "quiz":
                 correct_count = 0
-                total_question = 3
+                total_questions = 3
                 for q_num in range(total_questions):
                     random_key = random.choice(produce_keys)
-                    random_item = random.choice[random_key]
+                    random_item = store_items[random_key]
                     expected_code = random_item["code"].strip()
-                    user_guess = input("Question " + str(q_num + 1) + ": Enter Plu Code for "+ random_item["name"] + ": ").strip()
+                    user_guess = input("Question " + str(q_num + 1) + ": Enter PLU Code for " + random_item["name"] + ": ").strip()
                     if user_guess == expected_code:
                         print("Correct")
                         correct_count += 1
                     else:
-                        print("Wrong, The Plu Code for " + random_item["name"] + "is " + expected_code + ".")
-                print("Quiz Finished, Score = " + str(correct_count) + "out of " + str(total_question))
+                        print("Wrong. The PLU code for " + random_item["name"] + " is " + expected_code + ".")
+                print("Quiz Finished Score = " + str(correct_count) + " out of " + str(total_questions))
+        else:
+            input("\n Press Enter to pick another section")
+
 
 
 # function 7 - open Upgrade Shop
@@ -339,7 +397,7 @@ def open_upgrade_shop(bank_balance, upgrades):
                     else:
                         print("Purchase Cancelled")
             else:
-                print("Invalid Number. Please Choose Between 0 and "+ str(len(upgrade_keys) + "."))
+                print("Invalid Number. Please Choose Between 0 and "+ str(len(upgrade_keys)) + ".")
         else:
             print("Invalid Input. Please Enter a Number")
 
@@ -361,7 +419,7 @@ def get_shift_settings(shift_num):
         max_items = 7
         coupons_per_customer = 1
         event_chance = 0.15
-        return  num_customers, min_item, max_items, coupons_per_customer, event_chance
+        return  num_customers, min_items, max_items, coupons_per_customer, event_chance
     elif shift_num == 3:
         num_customers = 4
         min_items = 5
@@ -375,14 +433,14 @@ def get_shift_settings(shift_num):
         max_items = 9
         coupons_per_customer = 2
         event_chance = 0.25
-        return num_customer, min_items, max_items, coupons_per_customer, event_chance
+        return num_customers, min_items, max_items, coupons_per_customer, event_chance
     else:
         num_customers = 6
         min_items = 7
         max_items = 11
         coupons_per_customer = 3
         event_chance = 0.3
-        return num_customer, min_items, max_items, coupons_per_customer, event_chance
+        return num_customers, min_items, max_items, coupons_per_customer, event_chance
 
 
 #function 9 - generate customer(min_items, max_items)
@@ -679,7 +737,7 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
     handed = round(float(handed), 2)
     change = round(handed - final_total, 2)
 
-    print("Customer Hands you ${:.2f}".format(handed) + "in cash")
+    print("Customer Hands you ${:.2f}".format(handed) + " in cash")
 
     if change <= keep_change_limit:
         print("Customer Says Keep the Change")
@@ -697,7 +755,7 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
          typed_val = float(typed)
          if round(typed_val, 2) == change:
              print("Exact Change Given")
-             return 0.00
+             return 0,0.00
          else:
              print("Wrong Change, The Right Amount was ${:.2f}".format(change))
              return 1, 0.0
@@ -710,13 +768,13 @@ def run_payment_stage(cart_keys, total_discount, upgrades):
 def run_bagging_stage(cart_keys, upgrades, customer=None):
     print("Stage 4: Grocery Bagging")
 
-    if heavy_bags in upgrades:
+    if "heavy_bags" in upgrades:
          max_weight = upgraded_max_bag_weight
     else:
         max_weight = standard_max_bag_weight
 
-    if insulated_bags in upgrades:
-        bonus_per_bag = upgradad_frozen_bonus
+    if "insulated_bags" in upgrades:
+        bonus_per_bag = upgraded_frozen_bonus
     else:
         bonus_per_bag = frozen_bonus
 
@@ -743,45 +801,51 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
             print("Item "+ str(item_num)+ "/" + str(total_items) + ":" + item_name)
             print("Weight: "+ str(item_weight) + " lbs | Category: " + item_cat + " | " + fragile_tag)
             print("Current Bags: " + str(len(bags)) + " (Max bags: " + str(max_bags_per_order) + ", Max Weight: " + str(max_weight) + " lbs")
-            cmd = input("Enter Bag Number, 'new', or 'inspect' > ").strip().lower()
+            cmd = input("Enter 'add bag <num>', Bag Number 'new', or 'inspect' > ").strip().lower()
 
-            if cmd.isdigit() == True:
-                bag_num = int(cmd)
-                if bag_num >= 1 and bag_num and bag_num <= len(bags):
-                    bags[bag_num - 1].append(key)
-                    print("Placed " + item_name + " into bag" + str(bag_num) + ".")
-                    break
+            if cmd.startswith("add bag") or cmd.isdigit():
+                num_str = cmd.replace("add bag", "").strip()
+                if num_str.isdigit():
+                    bag_num = int(num_str)
+                    if 1 <= bag_num <= len(bags):
+                        bags[bag_num - 1].append(key)
+                        print("Placed " + item_name + " into bag " + str(bag_num) + ".")
+                        break
+                    else:
+                        print("Invalid Bag Number. Choose between 1 and " + str(len(bags)) + ".")
                 else:
-                    print("Invalid Bag Number. Choose between 1 and " + str(len(bags)) + ".")
+                    print("Invalid Command. Try 'add bag 1', 'new', or 'inspect'.")
+
             elif cmd == "new":
                 if len(bags) < max_bags_per_order:
                     bags.append([key])
-                    print("Opened Bag " + str(len(bags)) + " and placed" + item_name + " inside")
+                    print("Opened Bag " + str(len(bags)) + " and placed " + item_name + " inside")
                     break
                 else:
                     print("Bag Limit reached (" + str(max_bags_per_order) + " bags max)")
+
             elif cmd == "inspect":
                 print("Bag Inspection")
-                for x in range(len(bags)):
+                for b in range(len(bags)):
                     bag_w = 0.0
                     bag_names = []
                     for x in bags[b]:
                         bag_w = round(bag_w + store_items[x]["weight"], 2)
                         bag_names.append(store_items[x]["name"] + " (" + store_items[x]["category"] + ")")
-                        if len(bag_names) == 0:
-                            print("Bag " + str(b + 1) + "[0.0 / " + str(max_weight) + " lbs]: empty")
-                        else:
-                            print("Bag " + str(b + 1) + " [" + str(bag_w) + " / " + str(max_weight) + " lbs] " + ", ".join(bag_names))
+                    if len(bag_names) == 0:
+                        print("Bag " + str(b + 1) + "[0.0 / " + str(max_weight) + " lbs]: empty")
+                    else:
+                        print("Bag " + str(b + 1) + " [" + str(bag_w) + " / " + str(max_weight) + " lbs] " + ", ".join(bag_names))
             else:
                 print("Invalid Command. Enter a bag number, 'new' or 'inspect'.")
 
     print("Bagging Inspection")
 
-    stage_mistake = 0
+    stage_mistakes = 0
     frozen_tip_bonus = 0.0
 
-    for x in range(len(bags)):
-        bag = bags[x]
+    for b in range(len(bags)):
+        bag = bags[b]
         problems = []
 
         bag_weight = 0.0
@@ -811,7 +875,7 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
         for k in bag:
             cat = store_items[k]["category"]
             if cat in hazard_categories:
-                has_hazard = true
+                has_hazard = True
             if cat in fresh_categories:
                 has_fresh = True
 
@@ -841,7 +905,7 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
                     if store_items[x]["category"] == "produce":
                         has_prod = True
                 if has_chem == True and has_prod == True:
-                    stage_mistake += 1
+                    stage_mistakes += 1
                     problems.append("Cory Asked Not to Mix His cleaning Supplies with His Produce")
 
             if customer["name"] == "Weekend Baker":
@@ -884,8 +948,8 @@ def run_bagging_stage(cart_keys, upgrades, customer=None):
             if found_frozen == True and found_produce == True:
                  paired_properly = True
         if paired_properly == False:
-            stage_mistake += 1
-            print("Special Request Missed: Bill Aksed to put his frozen items with his produce (+1 Mistake)")
+            stage_mistakes += 1
+            print("Special Request Missed: Bill Asked to put his frozen items with his produce (+1 Mistake)")
 
     if customer != None and customer["name"] == "Freezer Man":
        bags_with_frozen = 0
@@ -955,21 +1019,21 @@ def play_shift(
         pay_mistakes, change_tip = run_payment_stage(cart_keys, total_discount, upgrades)
         bag_mistakes, frozen_bonus_earned = run_bagging_stage(cart_keys, upgrades, customer)
 
-        customer_mistakes = coupon_mistakes + pay_mistakes + bag_mistake
+        customer_mistakes = coupon_mistakes + pay_mistakes + bag_mistakes
         shift_mistakes += customer_mistakes
         total_customers_served += 1
 
         if customer_mistakes == 0:
             print(customer["name"] + ": \"" + customer["happy_outro"] + "\"")
             customer_tip = round((change_tip + frozen_bonus_earned) * customer["tipmult"], 2)
-            shift_tips = round((shift_tips + customer_tip , 2))
+            shift_tips = round(shift_tips + customer_tip , 2)
             print("Customer Tip Earned ${:.2f}".format(customer_tip))
 
         else:
             print(customer["name"] + ": \"" + customer["angry_outro"] + "\"")
-            print("Customer Mistakes: " + str(customer_mistakes) + "NO Tips Earned")
+            print("Customer Mistakes: " + str(customer_mistakes) + " NO Tips Earned")
             if customer["name"] == "Rordan Gamsey":
-                shift_mistake += 1
+                shift_mistakes += 1
                 print("Rordan Ramsey Reported You!, (+1 Extra Mistake)")
 
 
@@ -997,8 +1061,18 @@ def play_shift(
     print("Total Mistakes: " + str(shift_mistakes))
     print("Shift Grade: " + letter + " (Bonus: ${:.2f}".format(grade_bonus) + ")")
     print("Customer Tips: ${:.2f}".format(shift_tips))
-    print("Total Shift Pay: ${:.2f".format(pay))
+    print("Total Shift Pay: ${:.2f}".format(pay))
     print("New Bank Balance: ${:.2f}".format(bank_balance))
+
+    return (
+        bank_balance,
+        shift_num,
+        total_customers_served,
+        alltime_tips_earned,
+        total_mistakes,
+        best_shift_time,
+        upgrades,
+    )
 
 
 # function 16 - show_cashier_handbook
@@ -1006,14 +1080,14 @@ def play_shift(
 def show_cashier_handbook():
     print("SUPER MART CASHIER HANDBOOK")
 
-    print("\n[1] Stage 1: Scanning & and Register Events")
+    print("\n[1] Stage 1: Scanning & Register Events")
     print("   - Regular items show a barcode: press enter to scan.")
     print("   - Produce items have NO barcode: enter their 4 digit Plu Code")
     print("   - Type 'book' during produce scanning to look up the code (+5 seconds penalty)")
-    print("   - If a register event pos up, type the exact fix word shown.")
+    print("   - If a register event pops up, type the exact fix word shown.")
 
     print("\n[2] Stage 2: Coupon Validation")
-    print(" - Only Type 'accept' if all 3 rule passed")
+    print(" - Only Type 'accept' if all 3 rules passed")
     print(" 1. The required item is actually in the customer's cart.")
     print(" 2. The cart Quantity is at least the coupon's minimum quantity")
     print(" 3. The Current shift number is not above the coupon's expiration shift")
@@ -1024,19 +1098,15 @@ def show_cashier_handbook():
     print(" - Otherwise, type the exact change owed")
 
     print("\n[4] Stage 4: Bagging Rules")
-    print(" - Standard Bag limit is 15.0 lbs (22.0 lbs with the Heavy Bag Upgrade")
+    print(" - Standard Bag limit is 15.0 lbs (22.0 lbs with the Heavy Bag Upgrade)")
     print(" - Never put a heavy item (over 4.0 lbs) with a fragile item")
-    print(" - Never Mix raw meat or houshold chemicals with produce or bakery items")
+    print(" - Never Mix raw meat or household chemicals with produce or bakery items")
     print(" - Put 2 or more Frozen items in the same bag for +$1.50 tip bonus")
     print(" - Pay Close attention to each customer's greeting for a special requests")
 
     print("\n[5] Stage 5: Shift Grading")
     print(" - Grade S: 0 Mistakes and 60.0s or faster (+$10.00 bonus)")
-    print(" - Grade A: 0 Mistakes and over 60.0s (+$5.00 bonus")
+    print(" - Grade A: 0 Mistakes and over 60.0s (+$5.00 bonus)")
     print(" - Grade B: 1-2 Mistakes (+$2.00 bonus")
     print(" - Grade C: 3-4 Mistakes (+$0.00 penalty)")
-    print(" - Grade F: 5+ Mistakes (-$5.00 penalty, caps at $0.00")
-
-
-
-
+    print(" - Grade F: 5+ Mistakes (-$5.00 penalty, caps at $0.00)")

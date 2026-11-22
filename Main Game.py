@@ -111,7 +111,7 @@ store_items = {
 
     "jalapenos": {"name": "Jalapeno Peppers", "price": 1.89, "weight": 0.9, "category": "produce", "code": "1298", "is_produce": True, "fragile": False},
 
-    "ginger": {"name": "Fresh Ginger Root", "price": 2.69, "weight": 0.5, "category": "produce", "code": " 1992", "is_produce": True, "fragile": False},
+    "ginger": {"name": "Fresh Ginger Root", "price": 2.69, "weight": 0.5, "category": "produce", "code": "1992", "is_produce": True, "fragile": False},
 
     "sweetpotatoes": {"name": "Sweet Potatoes", "price": 5.49, "weight": 4.5, "category": "produce", "code": "1090", "is_produce": True, "fragile": False},
 
@@ -166,6 +166,18 @@ store_items = {
     "orangejuice" : {"name": "Freshly Squeezed Organic Orange Juice", "price": 7.89, "weight": 5.6, "category": "refrigerated", "code": "2551", "is_dairy": True, "fragile": False},
 
     "hummus" : {"name": "Organic Sourced Hummus", "price": 8.99, "weight": 5.9, "category" : "refrigerated","code": "2443", "is_dairy": True, "fragile": False},
+
+    "mozzarella" : {"name": "Fresh Mozzarella Ball", "price": 5.49, "weight": 1.0, "category": "dairy", "code": "2000", "is_dairy": True, "fragile": False},
+
+    "parmesan" : {"name": "Grated Parmesan Cheese", "price": 4.99, "weight": 0.8, "category": "dairy", "code": "2001", "is_dairy": True, "fragile": False},
+
+    "oatmilk": {"name": "Barista Oat Milk", "price": 4.79, "weight": 2.2, "category": "dairy", "code": "2002", "is_dairy": True, "fragile": False},
+
+    "heavycream" : {"name": "Heavy Whipping Cream", "price": 4.49, "weight": 1.3, "category": "dairy", "code": "2003", "is_dairy": True, "fragile": False},
+
+    "cottagecheese": {"name": "Low Fat Cottage Cheese", "price": 3.99, "weight": 0.9, "category": "dairy", "code": "2004", "is_dairy": True, "fragile": False},
+
+    "swisscheese": {"name": "Sliced Swiss Cheese", "price": 4.59, "weight": 1.3, "category": "dairy", "code": "2005","is_dairy": True, "fragile": False},
 
     #bakery items
 
@@ -354,6 +366,7 @@ coupons = [
     {"text": "Save $1.50 on Organic Almond Milk (Expires Shift 4)", "item": "almondmilk", "discount": 1.50, "min_qty": 1, "max_shift": 1},
 
     {"text": "Save $3.40 on Chocolate Chip Muffins (10ct)", "item": "muffins", "discount": 3.40, "min_qty": 1, "max_shift": 10},
+
 
 ]
 
@@ -576,11 +589,11 @@ upgrades_catalog = {
 register_events = [
     {"type": "jam", "message": "Scanner Jam Type 'clear' to reset the laser", "penalty_seconds": 3, "action": "clear"},
 
-    {"type": "price_check","message": "Missing Tag! Type 'call' to ask a manger for a price check.", "penalty_seconds":5, "action": "call" },
+    {"type": "price_check","message": "Missing Tag! Type 'call' to ask a manager for a price check.", "penalty_seconds": 5, "action": "call" },
 
     {"type": "recipt_paper", "message": "Out of Receipt Paper Type 'reload' to swap the roll", "penalty_seconds":4, "action": "reload"},
 
-    {"type": "bag_tangle", "message": "Bags Stuck Together Type 'Pull; to separate them", "penalty_seconds":2, "action": "pull"},
+    {"type": "bag_tangle", "message": "Bags Stuck Together Type 'pull' to separate them", "penalty_seconds":2, "action": "pull"},
 
     {"type": "scale_reset", "message":"Product Scale off zero Type 'reset' to calibrate", "penalty_seconds":3, "action": "reset"},
 
@@ -596,7 +609,7 @@ from functions import *
 main_menu = {
     "1.": "Start Shift",
     "2.": "Upgrade Shop",
-    "3.": "Plu Master Key",
+    "3.": "Store Catalog & Plu Master Key",
     "4.": "Career Stats",
     "5.": "Cashier Handbook",
     "6.": "Reset Save",
@@ -623,6 +636,7 @@ main_menu = {
 
 save_path = save_file_name
 
+load_game(save_path)
 
 while True:
     print("\n Main Menu (Shift #" + str(shift_num) + " | Balance: ${:.2f}".format(bank_balance) + ")")
@@ -726,5 +740,6 @@ while True:
     else:
         print("Invalid Choice")
 
-print("\n Thanks For playing " + store_name + "! GoodBye.")
+print("\nThanks For playing " + store_name + "! GoodBye.")
 input("Press Enter to exit")
+
