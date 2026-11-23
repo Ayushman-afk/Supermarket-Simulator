@@ -554,8 +554,8 @@ def run_scanning_stage(cart_keys, upgrades, event_chance):
 
                 if typed in valid_scan_commands:
                     time_penalties += plu_time_penalty
-                    print("Looked Up in the PLU Book (+"+ str(plu_time_penalty) + "s penalty.")
-                    print("The PLU Code for" + item_name + "is:" + item_code)
+                    print("Looked Up in the PLU Book (+"+ str(plu_time_penalty) + "s penalty).")
+                    print("The PLU Code for " + item_name + " is: " + item_code)
                 elif typed == item_code:
                     print("beep")
                     break
@@ -575,7 +575,7 @@ def run_scanning_stage(cart_keys, upgrades, event_chance):
             else:
                 print("Register Event")
                 print(event["message"])
-                print("(+" + str(event["penalty_seconds"]) + " seconds penalty addded)")
+                print("(+" + str(event["penalty_seconds"]) + " seconds penalty added)")
                 time_penalties += event["penalty_seconds"]
 
                 required_action = event["action"].strip().lower()
