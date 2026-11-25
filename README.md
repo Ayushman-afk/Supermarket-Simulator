@@ -26,5 +26,4 @@ How to run the program
 To View code - 
 Visit https://github.com/Ayushman-afk/Supermarket-Simulator
 
-command to run if program contains helper info
 
